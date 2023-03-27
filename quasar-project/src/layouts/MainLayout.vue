@@ -50,8 +50,20 @@
       
     </div>
   </div>
+  <q-page-container>
+      <div class="q-pa-md q-gutter-sm">
+    <q-btn color="orange" glossy label="Veleri Webmail" href= "https://webmail.veleri.hr/" />
+  </div>
+  <div class="q-pa-md">
+    <div class="q-gutter-md row items-start">
+      <q-date v-model="date" />
+    </div>
+  </div>
+    </q-page-container>
       <router-view />
     </q-page-container>
+
+    
     
   </q-layout>
 </template>
