@@ -22,7 +22,7 @@
 
 <!--        Za navigaciju bez otvaranja novog tab-a-->
         <q-btn>
-          <router-link to="pocetna" class="link-style">Pocetna stranica</router-link>
+          <router-link to="/" class="link-style">Pocetna stranica</router-link>
         </q-btn>
 
         <q-btn>
