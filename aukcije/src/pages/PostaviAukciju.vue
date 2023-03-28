@@ -1,21 +1,19 @@
 <template>
-  <div class="q-pa-xl row justify-end q-gutter-md">
+    <q-card class="q-pa-sm q-gutter-sm" flat bordered>
+      <q-card-section>
+        <div class=" text-h3 text-bold text-center text-blue-7 q-ml-sm">
+          Postavi aukciju
+          <div class="q-ml-sm flex justify-end q-gutter-sm">
     <q-btn
       size="15px"
       name="send"
       rel="stylesheet"
       to="/"
-      color="blue"
+      color="primary"
       label="Natrag"
     />
+          </div>
   </div>
-
-  <div class="q-pa-sm q-gutter-xl">
-    <q-card class="q-pa-sm q-gutter-sm" flat bordered>
-      <q-card-section>
-        <div class="text-h3 text-bold text-center text-black-7 q-ml-sm">
-          Postavi aukciju
-        </div>
       </q-card-section>
       <q-separator color="red" />
       <div class="q-ml-sm flex flex-start q-gutter-sm">
@@ -55,12 +53,13 @@
         />
       </div>
       <div class="q-ml-sm flex flex-start q-gutter-sm">
-        <q-uploader style="max-width: 500px" label="Umetnite sliku proizvoda" />
+        <q-uploader  style="max-width: 500px" label="Umetnite slike proizvoda" />
+        <div style="width: 300px">
         <q-input
           filled
           v-model="date"
           label="Datum i vrijeme početka aukcije"
-          style="max-width: 600px"
+
         >
           <template v-slot:prepend>
             <q-icon name="event" class="cursor-pointer">
@@ -94,8 +93,9 @@
             </q-icon>
           </template>
         </q-input>
-
-        <q-input
+      </div>
+      <div style="width: 300px">
+      <q-input
           filled
           v-model="date2"
           label="Datum i vrijeme završetka aukcije"
@@ -133,21 +133,23 @@
           </template>
         </q-input>
       </div>
+      </div>
 
-      <q-input
-        bordered
-        autofocus
-        label="Opis proizvoda"
-        style="max-width: 700px"
-        type="textarea"
-      />
+      <div class="q-pa-sm " style="max-width: 500px">
+    <q-input
+    label="Opis proizvoda"
+      v-model="text"
+      filled
+      type="textarea"
+    />
+  </div>
 
-      <div class="q-pa-sm flex flex-center">
-        <q-btn label="Postavi" type="submit" color="primary" class="q-ml-sm" />
-        <q-btn label="Otkaži" type="submit" color="primary" class="q-ml-sm" />
+      <div class="q-ml-sm flex justify-center q-gutter-sm">
+        <q-btn label="Postavi" type="submit" color="green" class="q-ml-sm" />
+        <q-btn label="Otkaži" type="submit" color="red" class="q-ml-sm" />
       </div>
     </q-card>
-  </div>
+
 </template>
 <script>
 import { ref } from "vue";
