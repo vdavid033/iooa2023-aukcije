@@ -21,6 +21,15 @@
       <q-list>
         <q-item-label header> Mogućnosti </q-item-label>
 
+<!--        Za navigaciju bez otvaranja novog tab-a-->
+        <q-btn>
+          <router-link to="pocetna" class="link-style">Pocetna stranica</router-link>
+        </q-btn>
+
+        <q-btn>
+          <router-link to="postavi" class="link-style">Dodaj aukciju</router-link>
+        </q-btn>
+
         <EssentialLink
           v-for="link in essentialLinks"
           :key="link.title"
@@ -44,7 +53,7 @@ const linksList = [
     title: "Postavi aukciju",
     caption: "Unos aukcije",
     icon: "code",
-    link: "http://localhost:8080/#/postavi",
+    link: "postavi",
   },
   {
     title: "Github Aukcije",
