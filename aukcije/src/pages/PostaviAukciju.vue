@@ -9,7 +9,7 @@
       name="send"
       rel="stylesheet"
       to="/"
-      color="primary"
+      color="black"
       label="Natrag"
     />
           </div>
