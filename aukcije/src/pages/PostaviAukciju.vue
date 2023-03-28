@@ -1,66 +1,60 @@
 <template>
-    <q-card class="q-pa-sm q-gutter-sm" flat bordered>
-      <q-card-section>
-        <div class=" text-h3 text-bold text-center text-blue-7 q-ml-sm">
-          Postavi aukciju
-          <div class="q-ml-sm flex justify-end q-gutter-sm">
-    <q-btn
-      size="15px"
-      name="send"
-      rel="stylesheet"
-      to="/"
-      color="red"
-      label="Natrag"
-    />
-          </div>
-  </div>
-      </q-card-section>
-      <q-separator color="red" />
-      <div class="q-ml-sm flex flex-start q-gutter-sm">
-        <div style="width: 500px">
-          <q-input
-            filled
-            type="double"
-            label="Naziv proizvoda"
-            lazy-rules
-            :rules="[(val) => (val !== null && val !== '') || 'Unesite naziv']"
-          />
-        </div>
-        <div style="width: 500px">
-          <q-input
-            filled
-            type="double"
-            label="Početna cijena proizvoda"
-            lazy-rules
-            :rules="[
-              (val) => (val !== null && val !== '') || 'Unesite početnu cijenu',
-            ]"
+  <q-card class="q-pa-sm q-gutter-sm" flat bordered>
+    <q-card-section>
+      <div class="text-h3 text-bold text-center text-blue-7 q-ml-sm">
+        Postavi aukciju
+        <div class="q-ml-sm flex justify-end q-gutter-sm">
+          <q-btn
+            size="15px"
+            name="send"
+            rel="stylesheet"
+            to="/"
+            color="red"
+            label="Natrag"
           />
         </div>
       </div>
-
-      <div class="q-ml-sm q-gutter-sm">
+    </q-card-section>
+    <q-separator color="red" />
+    <div class="q-ml-sm flex flex-start q-gutter-sm">
+      <div style="width: 500px">
         <q-input
           filled
-          style="max-width: 400px"
           type="double"
-          label="Količina proizvoda"
+          label="Naziv proizvoda"
+          lazy-rules
+          :rules="[(val) => (val !== null && val !== '') || 'Unesite naziv']"
+        />
+      </div>
+      <div style="width: 500px">
+        <q-input
+          filled
+          type="double"
+          label="Početna cijena proizvoda"
           lazy-rules
           :rules="[
-            (val) =>
-              (val !== null && val !== '') || 'Unesite količinu proizvoda',
+            (val) => (val !== null && val !== '') || 'Unesite početnu cijenu',
           ]"
         />
       </div>
-      <div class="q-ml-sm flex flex-start q-gutter-sm">
-        <q-uploader  style="max-width: 500px" label="Umetnite slike proizvoda" />
-        <div style="width: 300px">
-        <q-input
-          filled
-          v-model="date"
-          label="Datum i vrijeme početka aukcije"
+    </div>
 
-        >
+    <div class="q-ml-sm q-gutter-sm">
+      <q-input
+        filled
+        style="max-width: 400px"
+        type="double"
+        label="Količina proizvoda"
+        lazy-rules
+        :rules="[
+          (val) => (val !== null && val !== '') || 'Unesite količinu proizvoda',
+        ]"
+      />
+    </div>
+    <div class="q-ml-sm flex flex-start q-gutter-sm">
+      <q-uploader style="max-width: 500px" label="Umetnite slike proizvoda" />
+      <div style="width: 300px">
+        <q-input filled v-model="date" label="Datum i vrijeme početka aukcije">
           <template v-slot:prepend>
             <q-icon name="event" class="cursor-pointer">
               <q-popup-proxy
@@ -95,7 +89,7 @@
         </q-input>
       </div>
       <div style="width: 300px">
-      <q-input
+        <q-input
           filled
           v-model="date2"
           label="Datum i vrijeme završetka aukcije"
@@ -133,23 +127,17 @@
           </template>
         </q-input>
       </div>
-      </div>
+    </div>
 
-      <div class="q-pa-sm " style="max-width: 500px">
-    <q-input
-    label="Opis proizvoda"
-      v-model="text"
-      filled
-      type="textarea"
-    />
-  </div>
+    <div class="q-pa-sm" style="max-width: 500px">
+      <q-input label="Opis proizvoda" v-model="text" filled type="textarea" />
+    </div>
 
-      <div class="q-ml-sm flex justify-center q-gutter-sm">
-        <q-btn label="Postavi" type="submit" color="green" class="q-ml-sm" />
-        <q-btn label="Otkaži" type="submit" color="red" class="q-ml-sm" />
-      </div>
-    </q-card>
-
+    <div class="q-ml-sm flex justify-center q-gutter-sm">
+      <q-btn label="Postavi" type="submit" color="green" class="q-ml-sm" />
+      <q-btn label="Otkaži" type="submit" color="red" class="q-ml-sm" />
+    </div>
+  </q-card>
 </template>
 <script>
 import { ref } from "vue";

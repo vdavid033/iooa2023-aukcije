@@ -6,9 +6,11 @@ const routes = [
       {
         path: "/",
         component: () => import("pages/IndexPage.vue"),
+      },
+      {
         path: "/postavi",
         component: () => import("pages/PostaviAukciju.vue"),
-      },
+      }
     ],
   },
 
