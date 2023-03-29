@@ -38,28 +38,19 @@
         />
       </q-list>
     </q-drawer>
+
+
     
     <q-page-container>
       <div class="q-pa-md q-gutter-sm">
-    <q-btn color="amber" glossy label="Merlin 2022/2023" href= "https://moodle.srce.hr/2022-2023/" />
-  </div>
-  <div class="q-pa-md">
-    <div class="q-gutter-md row items-start">
-      <q-date v-model="date" />
 
-      
-    </div>
+        <q-btn>
+          <router-link to="PostaviAukciju" class="link-style"
+            >Dodaj aukciju</router-link>
+        </q-btn>
+
   </div>
-  <q-page-container>
-      <div class="q-pa-md q-gutter-sm">
-    <q-btn color="orange" glossy label="Veleri Webmail" href= "https://webmail.veleri.hr/" />
-  </div>
-  <div class="q-pa-md">
-    <div class="q-gutter-md row items-start">
-      <q-date v-model="date" />
-    </div>
-  </div>
-    </q-page-container>
+  
       <router-view />
     </q-page-container>
 
