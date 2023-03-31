@@ -1,8 +1,11 @@
+
+
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
-      <q-toolbar>
-        <q-btn
+      
+        <q-toolbar>
+          <q-btn
           flat
           dense
           round
@@ -10,13 +13,68 @@
           aria-label="Menu"
           @click="toggleLeftDrawer"
         />
+          <q-toolbar-title>
+            Aukcije
+          </q-toolbar-title>
+      
+          <q-input
+            v-model="search"
+            filled
+            placeholder="Search"
+            dense
+            class="w-200"
+            @keyup.enter="searchItems"
+          />
+      
+          <q-btn
+            icon="search"
+            color="primary"
+            class="q-mr-md"
+            @click="searchItems"
+          />
+      
+          <q-btn
+            icon="clear"
+            color="primary"
+            @click="clearSearch"
+          />
 
-        <q-toolbar-title>
-          Quasar App
-        </q-toolbar-title>
+          <div class="q-pa-md">
+            <q-btn-dropdown color="primary" :label="selectedCategory">
+              <q-list>
+                <q-item clickable v-close-popup @click="onItemClick('Photos')">
+                  <q-item-section>
+                    <q-item-label>Kategorija 1</q-item-label>
+                  </q-item-section>
+                </q-item>
+          
+                <q-item clickable v-close-popup @click="onItemClick('Videos')">
+                  <q-item-section>
+                    <q-item-label>Kategorija 2</q-item-label>
+                  </q-item-section>
+                </q-item>
+          
+                <q-item clickable v-close-popup @click="onItemClick('Articles')">
+                  <q-item-section>
+                    <q-item-label>Kategorija 3</q-item-label>
+                  </q-item-section>
+                </q-item>
+              </q-list>
+            </q-btn-dropdown>
+          </div>
 
-        <div>Quasar v{{ $q.version }}</div>
-      </q-toolbar>
+          <q-btn
+            icon="refresh"
+            color="primary"
+            @click="refresh"
+          />
+
+         <q-space /><q-space /><q-space /><q-space /><q-space /><q-space /><q-space /><q-space />
+          <router-link to="/PostaviAukciju" class="link-style">
+            <q-btn label="Sell" color="positive" class="q-mr-md" />
+          </router-link>
+          <q-btn label="My Profile" color="primary" class="q-mr-md" />
+        </q-toolbar>
     </q-header>
 
     <q-drawer
@@ -39,29 +97,19 @@
       </q-list>
     </q-drawer>
 
-
-    
     <q-page-container>
       <div class="q-pa-md q-gutter-sm">
-
-        <q-btn>
-          <router-link to="PostaviAukciju" class="link-style"
-            >Dodaj aukciju</router-link>
-        </q-btn>
-
   </div>
-  
       <router-view />
     </q-page-container>
 
-    
-    
   </q-layout>
 </template>
 
 <script>
 import { defineComponent, ref } from 'vue'
 import EssentialLink from 'components/EssentialLink.vue'
+
 const linksList = [
   {
     title: 'Docs',
@@ -116,15 +164,32 @@ export default defineComponent({
 
   setup () {
     const leftDrawerOpen = ref(false)
+    const selectedCategory = ref('Kategorije')
+    const onItemClick = (category) => {
+      selectedCategory.value = category
+    }
 
     return {
       date: ref('2019/02/01'),
       essentialLinks: linksList,
       leftDrawerOpen,
+      selectedCategory,
+      onItemClick,
       toggleLeftDrawer () {
         leftDrawerOpen.value = !leftDrawerOpen.value
-      }
+      },
+      refresh () {
+        selectedCategory.value = "Kategorije"
+      },
+      
     }
   }
 })
 </script>
+
+
+<style scoped>
+.q-btn__label {
+  text-decoration: none !important;
+}
+</style>
