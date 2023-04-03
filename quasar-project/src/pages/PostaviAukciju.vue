@@ -27,6 +27,19 @@
           />
         </div>
         <div style="width: 500px">
+          <q-select
+          filled
+            type="double"
+            lazy-rules
+            :rules="[(val) => (val !== null && val !== '') || 'Odaberite kategoriju']"
+    v-model="selectedCategory"
+    label="Kategorija"
+    :options="categories"
+    option-label="name"
+    option-value="value"
+  />
+        </div>
+        <div style="width: 500px">
           <q-input
             filled
             type="double"
@@ -37,19 +50,6 @@
             ]"
           />
         </div>
-      </div>
-  
-      <div class="q-ml-sm q-gutter-sm">
-        <q-input
-          filled
-          style="max-width: 400px"
-          type="double"
-          label="Količina proizvoda"
-          lazy-rules
-          :rules="[
-            (val) => (val !== null && val !== '') || 'Unesite količinu proizvoda',
-          ]"
-        />
       </div>
       <div class="q-ml-sm flex flex-start q-gutter-sm">
         <q-uploader style="max-width: 500px" label="Umetnite slike proizvoda" />
@@ -149,5 +149,19 @@
         date2: ref("2023-03-27 12:44"),
       };
     },
+    data () {
+      return {
+        selectedCategory: null,
+        categories: [
+          { name: 'Umjetnina', value: 'art' },
+          { name: 'Automobili', value: 'cars' },
+          { name: 'Nakit', value: 'jewelry' },
+          { name: 'Ostalo', value: 'other' }
+        ]
+      }
+    }
   };
+  
+
   </script>
+  
