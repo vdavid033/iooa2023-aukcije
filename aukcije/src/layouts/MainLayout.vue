@@ -11,7 +11,7 @@
           @click="toggleLeftDrawer"
         />
 
-        <q-toolbar-title> Aplikacija za aukcije </q-toolbar-title>
+        <q-toolbar-title> Aplikacija za aukcije</q-toolbar-title>
       </q-toolbar>
     </q-header>
 
@@ -26,10 +26,12 @@
           <router-link to="/" class="link-style">Početna stranica</router-link>
         </q-btn>
 
+        <button @click="handleClick()">Click me</button>
+
         <q-btn>
           <router-link to="postavi" class="link-style"
-            >Dodaj aukciju</router-link
-          >
+            >Dodaj aukciju
+          </router-link>
         </q-btn>
       </q-list>
     </q-drawer>
@@ -42,9 +44,27 @@
 
 <script>
 import { defineComponent, ref } from "vue";
+import axios from "axios";
+
+const baseUrl = "http://localhost:3306/api/";
 
 export default defineComponent({
   name: "MainLayout",
+
+  methods: {
+    handleClick() {
+      axios
+        .get(baseUrl + "all-korisnik", {
+          // data: 'Some data'
+        })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
 
   setup() {
     const leftDrawerOpen = ref(false);

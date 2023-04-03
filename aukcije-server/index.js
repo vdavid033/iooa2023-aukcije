@@ -4,33 +4,34 @@ const bodyParser = require('body-parser')
 const mysql = require('mysql')
 
 const app = express()
-const port = 3000
+const port = 3306
 
-app.use(cors())
-app.use(bodyParser.json()) // Parse JSON requests
-app.use(bodyParser.urlencoded({ extended: true })) // Parse URL-encoded requests
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(cors({origin: '*'}))
 
-// Create a MySQL connection pool
-const pool = mysql.createPool({
-    connectionLimit: 10,
-    host: 'localhost',
-    user: 'your_username',
-    password: 'your_password',
-    database: 'your_database'
-})
+const dbConn = mysql.createConnection({
+    host: 'student.veleri.hr',
+    user: 'iooa-aukcije',
+    password: '11',
+    database: 'iooa-aukcije'
+});
 
-app.get('/api/data', (req, res) => {
-    // Get data from MySQL
-    pool.query('SELECT * FROM data', (error, results) => {
+dbConn.connect()
+
+app.get('/api/all-korisnik', (req, res) => {
+
+    dbConn.query('SELECT * FROM korisnik', (error, results) => {
         if (error) {
             console.error(error)
             res.status(500).send('Error retrieving data from database')
         } else {
+            console.log(res.json(results))
             res.json(results)
         }
     })
 })
 
 app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`)
+    console.log(`Server running at port: ${port}`)
 })
