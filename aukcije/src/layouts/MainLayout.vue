@@ -27,7 +27,6 @@
         </q-btn>
 
         <button @click="handleClick()">Click me</button>
-
         <q-btn>
           <router-link to="postavi" class="link-style"
             >Dodaj aukciju
@@ -54,9 +53,7 @@ export default defineComponent({
   methods: {
     handleClick() {
       axios
-        .get(baseUrl + "all-korisnik", {
-          // data: 'Some data'
-        })
+        .get(baseUrl + "all-predmet", {})
         .then((response) => {
           console.log(response);
         })
