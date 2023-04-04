@@ -8,7 +8,7 @@
             size="15px"
             name="send"
             rel="stylesheet"
-            to="/"
+            to="/pocetna"
             color="red"
             label="Natrag"
           />

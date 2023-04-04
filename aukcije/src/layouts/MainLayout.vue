@@ -84,19 +84,35 @@
         <q-item-label header class="text-bold text-black">
           Mogućnosti
         </q-item-label>
+          
+        <div class ="q-pa-sm col">
 
+          
+          
+          
         <!--        Za navigaciju bez otvaranja novog tab-a-->
-        <q-btn>
+        <div class ="q-pa-sm col">
+        <q-btn class=" flex flex-center" style="width: 280px;">
           <router-link to="pocetna" class="link-style"
             >Početna stranica</router-link
           >
         </q-btn>
-
-        <q-btn>
+      </div>
+        <div class ="q-pa-sm col">
+        <q-btn class="flex flex-center" style="width: 280px;">
           <router-link to="postavi" class="link-style"
             >Dodaj aukciju</router-link
           >
         </q-btn>
+      </div>
+        <div class ="q-pa-sm col">
+          <q-btn class="flex flex-center" style="width: 280px;">
+          <router-link to="prikaz" class="link-style"
+            >Prikaz Aukcije</router-link
+          >
+        </q-btn>
+      </div>
+      </div >
       </q-list>
     </q-drawer>
 
