@@ -32,6 +32,19 @@ app.get('/api/all-korisnik', (req, res) => {
     })
 })
 
+app.get('/api/all-predmet', (req, res) => {
+
+    dbConn.query('SELECT * FROM predmet', (error, results) => {
+        if (error) {
+            console.error(error)
+            res.status(500).send('Error retrieving data from database')
+        } else {
+            console.log(res.json(results))
+            res.json(results)
+        }
+    })
+})
+
 app.listen(port, () => {
     console.log(`Server running at port: ${port}`)
 })
