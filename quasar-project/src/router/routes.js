@@ -7,6 +7,9 @@ const routes = [
         path: "PostaviAukciju",
         component: () => import("pages/PostaviAukciju.vue"),
       },
+      {path: "IndexPage",
+       component: () => import("pages/IndexPage.vue"),
+    }
     ],
   },
 

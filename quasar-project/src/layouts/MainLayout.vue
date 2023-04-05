@@ -13,9 +13,13 @@
           aria-label="Menu"
           @click="toggleLeftDrawer"
         />
-          <q-toolbar-title>
-            Aukcije
-          </q-toolbar-title>
+          
+
+  <q-toolbar-title>
+    Aukcije
+  </q-toolbar-title>
+
+          
       
           <q-input
             v-model="search"
