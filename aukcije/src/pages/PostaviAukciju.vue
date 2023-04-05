@@ -137,12 +137,31 @@
       <q-btn label="Postavi" type="submit" color="green" class="q-ml-sm" />
       <q-btn label="Otkaži" type="submit" color="red" class="q-ml-sm" />
     </div>
+    <button @click="handleClick()">Click me</button>
   </q-card>
 </template>
 <script>
-import { ref } from "vue";
+import {defineComponent, ref} from "vue";
+import axios from "axios";
+
+const baseUrl = "http://localhost:3306/api/";
 
 export default {
+  methods: {
+    handleClick() {
+      axios
+          .get(baseUrl + "all-predmet", {
+            // data: 'Some data'
+          })
+          .then((response) => {
+            console.log(response);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+    },
+  },
+
   setup() {
     return {
       date: ref("2023-03-27 12:44"),

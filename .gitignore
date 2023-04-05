@@ -2,4 +2,8 @@
 
 .idea/
 
+/aukcije-server/node_modules/
+
 node_modules/
+
+/aukcije/.quasar/

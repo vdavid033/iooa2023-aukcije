@@ -101,8 +101,8 @@
         <div class ="q-pa-sm col">
         <q-btn class="flex flex-center" style="width: 280px;">
           <router-link to="postavi" class="link-style"
-            >Dodaj aukciju</router-link
-          >
+            >Dodaj aukciju
+          </router-link>
         </q-btn>
       </div>
         <div class ="q-pa-sm col">
@@ -124,9 +124,25 @@
 
 <script>
 import { defineComponent, ref } from "vue";
+import axios from "axios";
+
+const baseUrl = "http://localhost:3306/api/";
 
 export default defineComponent({
   name: "MainLayout",
+
+  methods: {
+    handleClick() {
+      axios
+        .get(baseUrl + "all-predmet", {})
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
 
   setup() {
     const leftDrawerOpen = ref(false);
