@@ -282,75 +282,23 @@
     >Zadnje ili trenutne aukcije</q-item
   >
   <div class="q-pa-sm row flex flex-center">
-    <div class="q-pa-md" style="width: 400px">
+    <div
+      v-for="item in items"
+      :key="item.sifra_predmeta"
+      class="q-pa-md"
+      style="width: 400px"
+    >
       <q-card>
-        <q-img src="https://cdn.quasar.dev/img/parallax2.jpg" no-native-menu>
-        </q-img>
+        <q-img :src="item.slika" no-native-menu />
         <q-item-section>
-          <q-item class="q-pa-sm text-bold text-blue-7">Naslov</q-item>
-          <q-item>Cijena</q-item>
-          <q-item>Current bid</q-item>
-          <q-item>Preostalo vrijeme aukcije </q-item>
-        </q-item-section>
-      </q-card>
-    </div>
-    <div class="q-pa-md" style="width: 400px">
-      <q-card>
-        <q-img src="https://cdn.quasar.dev/img/parallax2.jpg" no-native-menu>
-        </q-img>
-        <q-item-section>
-          <q-item class="q-pa-sm text-bold text-blue-7">Naslov</q-item>
-          <q-item>Cijena</q-item>
-          <q-item>Current bid</q-item>
-          <q-item>Preostalo vrijeme aukcije </q-item>
-        </q-item-section>
-      </q-card>
-    </div>
-    <div class="q-pa-md" style="width: 400px">
-      <q-card>
-        <q-img src="https://cdn.quasar.dev/img/parallax2.jpg" no-native-menu>
-        </q-img>
-        <q-item-section>
-          <q-item class="q-pa-sm text-bold text-blue-7">Naslov</q-item>
-          <q-item>Cijena</q-item>
-          <q-item>Current bid</q-item>
-          <q-item>Preostalo vrijeme aukcije </q-item>
-        </q-item-section>
-      </q-card>
-    </div>
-    <div class="q-pa-md" style="width: 400px">
-      <q-card>
-        <q-img src="https://cdn.quasar.dev/img/parallax2.jpg" no-native-menu>
-        </q-img>
-        <q-item-section>
-          <q-item class="q-pa-sm text-bold text-blue-7">Naslov</q-item>
-          <q-item>Cijena</q-item>
-          <q-item>Current bid</q-item>
-          <q-item>Preostalo vrijeme aukcije </q-item>
-        </q-item-section>
-      </q-card>
-    </div>
-    <div class="q-pa-md" style="width: 400px">
-      <q-card>
-        <q-img src="https://cdn.quasar.dev/img/parallax2.jpg" no-native-menu>
-        </q-img>
-        <q-item-section>
-          <q-item class="q-pa-sm text-bold text-blue-7">Naslov</q-item>
-          <q-item>Cijena</q-item>
-          <q-item>Current bid</q-item>
-          <q-item>Preostalo vrijeme aukcije </q-item>
-        </q-item-section>
-      </q-card>
-    </div>
-    <div class="q-pa-md" style="width: 400px">
-      <q-card>
-        <q-img src="https://cdn.quasar.dev/img/parallax2.jpg" no-native-menu>
-        </q-img>
-        <q-item-section>
-          <q-item class="q-pa-sm text-bold text-blue-7">Naslov</q-item>
-          <q-item>Cijena</q-item>
-          <q-item>Current bid</q-item>
-          <q-item>Preostalo vrijeme aukcije </q-item>
+          <q-item class="q-pa-sm text-bold text-blue-7">{{
+            item.naziv_predmeta
+          }}</q-item>
+          <q-item>Početna cijena: {{ item.pocetna_cijena }}$</q-item>
+          <q-item>Vrijeme zavrsetka: {{ item.vrijeme_zavrsetka }}</q-item>
+          <q-item
+            >Preostalo vrijeme aukcije: {{ item.preostalo_vrijeme }}</q-item
+          >
         </q-item-section>
       </q-card>
     </div>
@@ -359,6 +307,9 @@
 
 <script>
 import { ref } from "vue";
+import axios from "axios";
+
+const baseUrl = "http://localhost:3306/api/";
 
 export default {
   setup() {
@@ -366,6 +317,16 @@ export default {
       slide: ref(2),
       autoplay: ref(false),
     };
+  },
+  data() {
+    return {
+      items: [],
+    };
+  },
+  mounted() {
+    axios.get(baseUrl + "all-predmet").then((response) => {
+      this.items = response.data;
+    });
   },
 };
 </script>

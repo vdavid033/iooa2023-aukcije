@@ -31,7 +31,7 @@ app.get('/api/all-korisnik', (req, res) => {
 
 app.get('/api/all-predmet', (req, res) => {
 
-    connection.query('SELECT * FROM `predmet` ORDER BY vrijeme_zavrsetka DESC', (error, results) => {
+    connection.query('SELECT sifra_predmeta, naziv_predmeta, slika, pocetna_cijena, vrijeme_zavrsetka, TIME_FORMAT( SEC_TO_TIME(TIMESTAMPDIFF(SECOND, vrijeme_pocetka, vrijeme_zavrsetka)), \'%H:%i:%s\' ) AS preostalo_vrijeme FROM predmet ORDER BY preostalo_vrijeme DESC\n', (error, results) => {
         if (error) throw error;
 
         res.send(results)
