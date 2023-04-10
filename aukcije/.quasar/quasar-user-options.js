@@ -10,9 +10,6 @@
  * Boot files are your "main.js"
  **/
 
+import { Dialog } from "quasar";
 
-
-
-
-export default { config: {} }
-
+export default { config: {}, plugins: { Dialog } };

@@ -141,7 +141,7 @@
   </q-card>
 </template>
 <script>
-import {defineComponent, ref} from "vue";
+import { defineComponent, ref } from "vue";
 import axios from "axios";
 
 const baseUrl = "http://localhost:3306/api/";
@@ -150,15 +150,15 @@ export default {
   methods: {
     handleClick() {
       axios
-          .get(baseUrl + "all-predmet", {
-            // data: 'Some data'
-          })
-          .then((response) => {
-            console.log(response);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+        .get(baseUrl + "all-predmet", {
+          // data: 'Some data'
+        })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
   },
 

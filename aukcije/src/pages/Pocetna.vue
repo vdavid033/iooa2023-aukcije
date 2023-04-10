@@ -19,7 +19,7 @@
       height="350px"
       class="bg-white shadow-2 rounded-borders"
     >
-    <q-carousel-slide :name="2" class="column no-wrap">
+      <q-carousel-slide :name="2" class="column no-wrap">
         <div
           class="row fit justify-start items-center q-gutter-xs q-col-gutter no-wrap"
         >
@@ -27,31 +27,43 @@
             class="rounded-borders col-6 full-height"
             src="https://cdn.quasar.dev/img/material.png"
           >
-          <q-icon class="absolute all-pointer-events" size="32px" name="info" color="white" style="top: 8px; left: 8px">
-            <q-tooltip>
+            <q-icon
+              class="absolute all-pointer-events"
+              size="32px"
+              name="info"
+              color="white"
+              style="top: 8px; left: 8px"
+            >
+              <q-tooltip>
                 <q-item-section>
-          <q-item class="q-pa-sm text-bold text-white">Naslov</q-item>
-          <q-item>Cijena</q-item>
-          <q-item>Current bid</q-item>
-          <q-item>Preostalo vrijeme aukcije </q-item>
-        </q-item-section>
-            </q-tooltip>
-          </q-icon>
+                  <q-item class="q-pa-sm text-bold text-white">Naslov</q-item>
+                  <q-item>Cijena</q-item>
+                  <q-item>Current bid</q-item>
+                  <q-item>Preostalo vrijeme aukcije </q-item>
+                </q-item-section>
+              </q-tooltip>
+            </q-icon>
           </q-img>
           <q-img
             class="rounded-borders col-6 full-height"
             src="https://cdn.quasar.dev/img/material.png"
           >
-          <q-icon class="absolute all-pointer-events" size="32px" name="info" color="white" style="top: 8px; left: 8px">
-            <q-tooltip>
+            <q-icon
+              class="absolute all-pointer-events"
+              size="32px"
+              name="info"
+              color="white"
+              style="top: 8px; left: 8px"
+            >
+              <q-tooltip>
                 <q-item-section>
-          <q-item class="q-pa-sm text-bold text-white">Naslov</q-item>
-          <q-item>Cijena</q-item>
-          <q-item>Current bid</q-item>
-          <q-item>Preostalo vrijeme aukcije </q-item>
-        </q-item-section>
-            </q-tooltip>
-          </q-icon>
+                  <q-item class="q-pa-sm text-bold text-white">Naslov</q-item>
+                  <q-item>Cijena</q-item>
+                  <q-item>Current bid</q-item>
+                  <q-item>Preostalo vrijeme aukcije </q-item>
+                </q-item-section>
+              </q-tooltip>
+            </q-icon>
           </q-img>
         </div>
       </q-carousel-slide>
@@ -63,31 +75,43 @@
             class="rounded-borders col-6 full-height"
             src="https://cdn.quasar.dev/img/material.png"
           >
-          <q-icon class="absolute all-pointer-events" size="32px" name="info" color="white" style="top: 8px; left: 8px">
-            <q-tooltip>
+            <q-icon
+              class="absolute all-pointer-events"
+              size="32px"
+              name="info"
+              color="white"
+              style="top: 8px; left: 8px"
+            >
+              <q-tooltip>
                 <q-item-section>
-          <q-item class="q-pa-sm text-bold text-white">Naslov</q-item>
-          <q-item>Cijena</q-item>
-          <q-item>Current bid</q-item>
-          <q-item>Preostalo vrijeme aukcije </q-item>
-        </q-item-section>
-            </q-tooltip>
-          </q-icon>
+                  <q-item class="q-pa-sm text-bold text-white">Naslov</q-item>
+                  <q-item>Cijena</q-item>
+                  <q-item>Current bid</q-item>
+                  <q-item>Preostalo vrijeme aukcije </q-item>
+                </q-item-section>
+              </q-tooltip>
+            </q-icon>
           </q-img>
           <q-img
             class="rounded-borders col-6 full-height"
             src="https://cdn.quasar.dev/img/material.png"
           >
-          <q-icon class="absolute all-pointer-events" size="32px" name="info" color="white" style="top: 8px; left: 8px">
-            <q-tooltip>
+            <q-icon
+              class="absolute all-pointer-events"
+              size="32px"
+              name="info"
+              color="white"
+              style="top: 8px; left: 8px"
+            >
+              <q-tooltip>
                 <q-item-section>
-          <q-item class="q-pa-sm text-bold text-white">Naslov</q-item>
-          <q-item>Cijena</q-item>
-          <q-item>Current bid</q-item>
-          <q-item>Preostalo vrijeme aukcije </q-item>
-        </q-item-section>
-            </q-tooltip>
-          </q-icon>
+                  <q-item class="q-pa-sm text-bold text-white">Naslov</q-item>
+                  <q-item>Cijena</q-item>
+                  <q-item>Current bid</q-item>
+                  <q-item>Preostalo vrijeme aukcije </q-item>
+                </q-item-section>
+              </q-tooltip>
+            </q-icon>
           </q-img>
         </div>
       </q-carousel-slide>
@@ -99,31 +123,43 @@
             class="rounded-borders col-6 full-height"
             src="https://cdn.quasar.dev/img/material.png"
           >
-          <q-icon class="absolute all-pointer-events" size="32px" name="info" color="white" style="top: 8px; left: 8px">
-            <q-tooltip>
+            <q-icon
+              class="absolute all-pointer-events"
+              size="32px"
+              name="info"
+              color="white"
+              style="top: 8px; left: 8px"
+            >
+              <q-tooltip>
                 <q-item-section>
-          <q-item class="q-pa-sm text-bold text-white">Naslov</q-item>
-          <q-item>Cijena</q-item>
-          <q-item>Current bid</q-item>
-          <q-item>Preostalo vrijeme aukcije </q-item>
-        </q-item-section>
-            </q-tooltip>
-          </q-icon>
+                  <q-item class="q-pa-sm text-bold text-white">Naslov</q-item>
+                  <q-item>Cijena</q-item>
+                  <q-item>Current bid</q-item>
+                  <q-item>Preostalo vrijeme aukcije </q-item>
+                </q-item-section>
+              </q-tooltip>
+            </q-icon>
           </q-img>
           <q-img
             class="rounded-borders col-6 full-height"
             src="https://cdn.quasar.dev/img/material.png"
           >
-          <q-icon class="absolute all-pointer-events" size="32px" name="info" color="white" style="top: 8px; left: 8px">
-            <q-tooltip>
+            <q-icon
+              class="absolute all-pointer-events"
+              size="32px"
+              name="info"
+              color="white"
+              style="top: 8px; left: 8px"
+            >
+              <q-tooltip>
                 <q-item-section>
-          <q-item class="q-pa-sm text-bold text-white">Naslov</q-item>
-          <q-item>Cijena</q-item>
-          <q-item>Current bid</q-item>
-          <q-item>Preostalo vrijeme aukcije </q-item>
-        </q-item-section>
-            </q-tooltip>
-          </q-icon>
+                  <q-item class="q-pa-sm text-bold text-white">Naslov</q-item>
+                  <q-item>Cijena</q-item>
+                  <q-item>Current bid</q-item>
+                  <q-item>Preostalo vrijeme aukcije </q-item>
+                </q-item-section>
+              </q-tooltip>
+            </q-icon>
           </q-img>
         </div>
       </q-carousel-slide>
@@ -135,31 +171,43 @@
             class="rounded-borders col-6 full-height"
             src="https://cdn.quasar.dev/img/material.png"
           >
-          <q-icon class="absolute all-pointer-events" size="32px" name="info" color="white" style="top: 8px; left: 8px">
-            <q-tooltip>
+            <q-icon
+              class="absolute all-pointer-events"
+              size="32px"
+              name="info"
+              color="white"
+              style="top: 8px; left: 8px"
+            >
+              <q-tooltip>
                 <q-item-section>
-          <q-item class="q-pa-sm text-bold text-white">Naslov</q-item>
-          <q-item>Cijena</q-item>
-          <q-item>Current bid</q-item>
-          <q-item>Preostalo vrijeme aukcije </q-item>
-        </q-item-section>
-            </q-tooltip>
-          </q-icon>
+                  <q-item class="q-pa-sm text-bold text-white">Naslov</q-item>
+                  <q-item>Cijena</q-item>
+                  <q-item>Current bid</q-item>
+                  <q-item>Preostalo vrijeme aukcije </q-item>
+                </q-item-section>
+              </q-tooltip>
+            </q-icon>
           </q-img>
           <q-img
             class="rounded-borders col-6 full-height"
             src="https://cdn.quasar.dev/img/material.png"
           >
-          <q-icon class="absolute all-pointer-events" size="32px" name="info" color="white" style="top: 8px; left: 8px">
-            <q-tooltip>
+            <q-icon
+              class="absolute all-pointer-events"
+              size="32px"
+              name="info"
+              color="white"
+              style="top: 8px; left: 8px"
+            >
+              <q-tooltip>
                 <q-item-section>
-          <q-item class="q-pa-sm text-bold text-white">Naslov</q-item>
-          <q-item>Cijena</q-item>
-          <q-item>Current bid</q-item>
-          <q-item>Preostalo vrijeme aukcije </q-item>
-        </q-item-section>
-            </q-tooltip>
-          </q-icon>
+                  <q-item class="q-pa-sm text-bold text-white">Naslov</q-item>
+                  <q-item>Cijena</q-item>
+                  <q-item>Current bid</q-item>
+                  <q-item>Preostalo vrijeme aukcije </q-item>
+                </q-item-section>
+              </q-tooltip>
+            </q-icon>
           </q-img>
         </div>
       </q-carousel-slide>
@@ -171,31 +219,43 @@
             class="rounded-borders col-6 full-height"
             src="https://cdn.quasar.dev/img/material.png"
           >
-          <q-icon class="absolute all-pointer-events" size="32px" name="info" color="white" style="top: 8px; left: 8px">
-            <q-tooltip>
+            <q-icon
+              class="absolute all-pointer-events"
+              size="32px"
+              name="info"
+              color="white"
+              style="top: 8px; left: 8px"
+            >
+              <q-tooltip>
                 <q-item-section>
-          <q-item class="q-pa-sm text-bold text-white">Naslov</q-item>
-          <q-item>Cijena</q-item>
-          <q-item>Current bid</q-item>
-          <q-item>Preostalo vrijeme aukcije </q-item>
-        </q-item-section>
-            </q-tooltip>
-          </q-icon>
+                  <q-item class="q-pa-sm text-bold text-white">Naslov</q-item>
+                  <q-item>Cijena</q-item>
+                  <q-item>Current bid</q-item>
+                  <q-item>Preostalo vrijeme aukcije </q-item>
+                </q-item-section>
+              </q-tooltip>
+            </q-icon>
           </q-img>
           <q-img
             class="rounded-borders col-6 full-height"
             src="https://cdn.quasar.dev/img/material.png"
           >
-          <q-icon class="absolute all-pointer-events" size="32px" name="info" color="white" style="top: 8px; left: 8px">
-            <q-tooltip>
+            <q-icon
+              class="absolute all-pointer-events"
+              size="32px"
+              name="info"
+              color="white"
+              style="top: 8px; left: 8px"
+            >
+              <q-tooltip>
                 <q-item-section>
-          <q-item class="q-pa-sm text-bold text-white">Naslov</q-item>
-          <q-item>Cijena</q-item>
-          <q-item>Current bid</q-item>
-          <q-item>Preostalo vrijeme aukcije </q-item>
-        </q-item-section>
-            </q-tooltip>
-          </q-icon>
+                  <q-item class="q-pa-sm text-bold text-white">Naslov</q-item>
+                  <q-item>Cijena</q-item>
+                  <q-item>Current bid</q-item>
+                  <q-item>Preostalo vrijeme aukcije </q-item>
+                </q-item-section>
+              </q-tooltip>
+            </q-icon>
           </q-img>
         </div>
       </q-carousel-slide>
@@ -204,19 +264,19 @@
           position="top-right"
           :offset="[18, 18]"
           class="text-white rounded-borders"
-          style="background: rgba(0, 0, 0, .3); padding: 4px 8px;"
+          style="background: rgba(0, 0, 0, 0.3); padding: 4px 8px"
         >
-          <q-toggle dense dark color="orange" v-model="autoplay" label="Auto Play" />
+          <q-toggle
+            dense
+            dark
+            color="orange"
+            v-model="autoplay"
+            label="Auto Play"
+          />
         </q-carousel-control>
-
-        
       </template>
     </q-carousel>
-    
   </div>
-
-      
-
 
   <q-item class="q-pa-sm text-bold text-blue-7" style="font-size: 30px"
     >Zadnje ili trenutne aukcije</q-item
