@@ -295,7 +295,7 @@
             item.naziv_predmeta
           }}</q-item>
           <q-item>Početna cijena: {{ item.pocetna_cijena }}$</q-item>
-          <q-item>Vrijeme zavrsetka: {{ item.vrijeme_zavrsetka }}</q-item>
+          <q-item>Vrijeme zavrsetka: {{ formattedDate(item.vrijeme_zavrsetka) }}</q-item>
           <q-item
             >Preostalo vrijeme aukcije: {{ item.preostalo_vrijeme }}</q-item
           >
@@ -328,6 +328,12 @@ export default {
       this.items = response.data;
     });
   },
+  methods: {
+    formattedDate(dateString) {
+      return new Date(dateString).toLocaleString('hr-HR').replace(',', '');
+    }
+  }
+
 };
 </script>
 <style>
