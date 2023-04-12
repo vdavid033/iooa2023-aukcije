@@ -89,7 +89,7 @@
           <!--        Za navigaciju bez otvaranja novog tab-a-->
           <div class="q-pa-sm col">
             <q-btn class="flex flex-center" style="width: 280px">
-              <router-link to="pocetna" class="link-style"
+              <router-link to="/" class="link-style"
                 >Početna stranica</router-link
               >
             </q-btn>
