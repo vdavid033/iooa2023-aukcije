@@ -14,7 +14,7 @@
         color="white"
         text-color="blue"
         unelevated
-        to="/pocetna"
+        to="/"
         label="Povratak na početnu"
         no-caps
       />
