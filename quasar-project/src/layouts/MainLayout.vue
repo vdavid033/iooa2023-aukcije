@@ -16,9 +16,11 @@
           
 
   <q-toolbar-title>
-    Aukcije
+    <q-avatar>
+        <img src="~assets\aukcije_logo.jpg" alt="Logo">
+      </q-avatar>
   </q-toolbar-title>
-
+<q-space></q-space>
           
       
           <q-input
@@ -77,7 +79,9 @@
           <router-link to="/PostaviAukciju" class="link-style">
             <q-btn label="Sell" color="positive" class="q-mr-md" />
           </router-link>
+          <router-link to="/Moj_profil" class="link-style">
           <q-btn label="My Profile" color="primary" class="q-mr-md" />
+        </router-link>
         </q-toolbar>
     </q-header>
 
@@ -195,5 +199,9 @@ export default defineComponent({
 <style scoped>
 .q-btn__label {
   text-decoration: none !important;
+}
+.q-avatar{
+  height: 64px;
+  width: 64px;
 }
 </style>

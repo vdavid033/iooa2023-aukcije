@@ -9,6 +9,9 @@ const routes = [
       },
       {path: "IndexPage",
        component: () => import("pages/IndexPage.vue"),
+    },
+    {path: "Moj_profil",
+       component: () => import("pages/Moj_profil.vue"),
     }
     ],
   },
