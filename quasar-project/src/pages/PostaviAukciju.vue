@@ -70,7 +70,7 @@
                 </q-popup-proxy>
               </q-icon>
             </template>
-  
+
             <template v-slot:append>
               <q-icon name="access_time" class="cursor-pointer">
                 <q-popup-proxy
@@ -109,7 +109,7 @@
                 </q-popup-proxy>
               </q-icon>
             </template>
-  
+
             <template v-slot:append>
               <q-icon name="access_time" class="cursor-pointer">
                 <q-popup-proxy
@@ -128,40 +128,61 @@
           </q-input>
         </div>
       </div>
-  
+
       <div class="q-pa-sm" style="max-width: 500px">
         <q-input label="Opis proizvoda" v-model="text" filled type="textarea" />
       </div>
-  
+
       <div class="q-ml-sm flex justify-center q-gutter-sm">
-        <q-btn label="Postavi" type="submit" color="green" class="q-ml-sm" />
+        <q-btn label="Postavi" @click="submitForm" color="green" class="q-ml-sm" />
         <q-btn label="Otkaži" type="submit" color="red" class="q-ml-sm" />
       </div>
     </q-card>
   </template>
   <script>
-  import { ref } from "vue";
-  
-  export default {
-    setup() {
-      return {
-        date: ref("2023-03-27 12:44"),
-        date2: ref("2023-03-27 12:44"),
-      };
-    },
-    data () {
-      return {
-        selectedCategory: null,
-        categories: [
-          { name: 'Umjetnina', value: 'art' },
-          { name: 'Automobili', value: 'cars' },
-          { name: 'Nakit', value: 'jewelry' },
-          { name: 'Ostalo', value: 'other' }
-        ]
-      }
-    }
-  };
-  
+import { ref } from "vue";
+import axios from "axios"; // Import axios
 
-  </script>
-  
+export default {
+  setup() {
+    return {
+      date: ref("2023-03-27 12:44"),
+      date2: ref("2023-03-27 12:44"),
+    };
+  },
+  data() {
+    return {
+      selectedCategory: null,
+      categories: [
+        { name: "Umjetnina", value: "art" },
+        { name: "Automobili", value: "cars" },
+        { name: "Nakit", value: "jewelry" },
+        { name: "Ostalo", value: "other" },
+      ],
+    };
+  },
+  methods: {
+    async submitForm() {
+
+      const sampleData = {
+        sifra_predmeta: 1234,
+        naziv_predmeta: "Test",
+        slika: "test.jpg",
+        vrijeme_pocetka: "2023-03-27 12:00:00",
+        vrijeme_zavrsetka: "2023-03-27 14:00:00",
+        pocetna_cijena: 100,
+        svrha_donacije: "Test svrha",
+        id_korisnika: 1,
+        sifra_kategorije: 1
+      };
+
+      try {
+        const response = await axios.post("http://localhost:3000/unosPredmeta", sampleData);
+        console.log(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+  },
+};
+</script>
