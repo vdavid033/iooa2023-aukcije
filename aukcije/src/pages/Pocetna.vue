@@ -288,7 +288,7 @@
       class="q-pa-md"
       style="width: 400px"
     >
-      <q-card>
+      <q-card @click = "navigateToItem(item.sifra_predmeta)">
         <q-img :src="item.slika" no-native-menu />
         <q-item-section>
           <q-item class="q-pa-sm text-bold text-blue-7">{{
@@ -328,9 +328,14 @@ export default {
       this.items = response.data;
     });
   },
+
   methods: {
     formattedDate(dateString) {
       return new Date(dateString).toLocaleString('hr-HR').replace(',', '');
+    },
+
+    navigateToItem (sifra_predmeta){
+      this.$router.push({ path: 'prikaz', props: { sifra_predmeta: sifra_predmeta } });
     }
   }
 

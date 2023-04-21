@@ -2,7 +2,7 @@
   <q-card class="q-pa-sm q-gutter-sm" flat bordered>
     <q-card-section>
       <div class="text-h3 text-bold text-center text-blue-7 q-ml-sm">
-        Prikaz aukciju
+        Prikaz aukcije {{ this.sifra_predmeta}}
         <div class="q-ml-sm flex justify-end q-gutter-sm">
           <q-btn
             size="15px"
@@ -185,8 +185,27 @@
 </template>
 <script>
 import { ref } from "vue";
-import { useQuasar } from "quasar";
+import axios from "axios";
+
+const baseUrl = "http://localhost:3306/api/";
+
 export default {
+  props: {
+    sifra_predmeta: {
+      type: String,
+      required: false
+    }
+  },
+  mounted() {
+    console.log("ID", this.sifra_predmeta);
+
+    axios.get(baseUrl + "get-predmet/" + this.sifra_predmeta).then((response) => {
+      this.items = response.data;
+    });
+
+
+    console.log("RESPONSE", this.items);
+  },
   setup() {
     return {
       date: ref("2023-03-27 12:44"),
