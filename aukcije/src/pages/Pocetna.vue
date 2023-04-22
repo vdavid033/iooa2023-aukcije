@@ -335,7 +335,7 @@ export default {
     },
 
     navigateToItem (sifra_predmeta){
-      this.$router.push({ path: 'prikaz', props: { sifra_predmeta: sifra_predmeta } });
+      this.$router.push({ path: 'prikaz', query: { sifra_predmeta } });
     }
   }
 

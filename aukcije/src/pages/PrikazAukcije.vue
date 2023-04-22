@@ -18,9 +18,9 @@
     <q-separator color="red" />
     <div class="q-ml-sm flex flex-start q-gutter-sm">
       <div style="width: 500px">
-        <q-field rounded filled label="Naziv proizvoda" stack-label>
+        <q-field rounded filled label="Naziv proizvoda" stack-label v-model="naziv_predmeta">
           <template v-slot:control>
-            <div class="self-center full-width no-outline" tabindex="0">..</div>
+            <div class="self-center full-width no-outline" tabindex="0">{{ naziv_predmeta }}</div>
           </template>
         </q-field>
       </div>
@@ -190,16 +190,18 @@ import axios from "axios";
 const baseUrl = "http://localhost:3306/api/";
 
 export default {
-  props: {
-    sifra_predmeta: {
-      type: String,
-      required: false
+  computed: {
+    sifra_predmeta() {
+      return this.$route.query.sifra_predmeta;
     }
   },
-  mounted() {
-    console.log("ID", this.sifra_predmeta);
 
-    axios.get(baseUrl + "get-predmet/" + this.sifra_predmeta).then((response) => {
+  mounted() {
+
+    axios
+        .get(baseUrl + "get-predmet/" + this.sifra_predmeta, {})
+        .then((response) => {
+      console.log("RESPONSEEE", response.data[0]);
       this.items = response.data;
     });
 
