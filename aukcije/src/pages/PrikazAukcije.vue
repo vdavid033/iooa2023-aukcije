@@ -2,7 +2,7 @@
   <q-card class="q-pa-sm q-gutter-sm" flat bordered>
     <q-card-section>
       <div class="text-h3 text-bold text-center text-blue-7 q-ml-sm">
-        Prikaz aukcije {{ this.sifra_predmeta}}
+        Prikaz aukcije {{ this.sifra_predmeta }}
         <div class="q-ml-sm flex justify-end q-gutter-sm">
           <q-btn
             size="15px"
@@ -18,16 +18,16 @@
     <q-separator color="red" />
     <div class="q-ml-sm flex flex-start q-gutter-sm">
       <div style="width: 500px">
-        <q-field rounded filled label="Naziv proizvoda" stack-label v-model="naziv_predmeta">
+        <q-field rounded filled label="Naziv proizvoda" stack-label>
           <template v-slot:control>
-            <div class="self-center full-width no-outline" tabindex="0">{{ naziv_predmeta }}</div>
+            <div class="self-center full-width no-outline" tabindex="0">{{ item.naziv_predmeta }}</div>
           </template>
         </q-field>
       </div>
       <div style="width: 500px">
         <q-field rounded filled label="Početna cijena proizvoda" stack-label>
           <template v-slot:control>
-            <div class="self-center full-width no-outline" tabindex="0">..</div>
+            <div class="self-center full-width no-outline" tabindex="0">{{ item.pocetna_cijena + '$' }}</div>
           </template>
         </q-field>
       </div>
@@ -195,18 +195,18 @@ export default {
       return this.$route.query.sifra_predmeta;
     }
   },
-
+  data() {
+    return {
+      item: [],
+    };
+  },
   mounted() {
-
     axios
         .get(baseUrl + "get-predmet/" + this.sifra_predmeta, {})
         .then((response) => {
       console.log("RESPONSEEE", response.data[0]);
-      this.items = response.data;
+      this.item = response.data[0];
     });
-
-
-    console.log("RESPONSE", this.items);
   },
   setup() {
     return {
