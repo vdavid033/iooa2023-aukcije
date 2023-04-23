@@ -1,0 +1,3 @@
+.q-btn--flat:not(.no-underline):not(.text-color):not(.text-no-wrap):not(.text-uppercase) {
+    text-decoration: none !important;
+  }

@@ -1,8 +1,41 @@
-# iooa2023-aukcije
+# Quasar App (ioa2023-aukcije)
 
-- Klonirati GitHub repozitorij lokalno
-- lokalno se prebaciti u granu od tima
-- lokalno napraviti izmjenu i potvrditi je (add, commit)
-- dohvatiti zadnje izmjene s udaljenog repozitorija (pull)
-- napraviti spajanje s vašim izmjenama (merge, add, commit)
-- prebaciti izmjene na GitHub (push)
+A Quasar Project
+
+## Install the dependencies
+```bash
+yarn
+# or
+npm install
+```
+
+### Start the app in development mode (hot-code reloading, error reporting, etc.)
+```bash
+quasar dev
+```
+
+
+### Lint the files
+```bash
+yarn lint
+# or
+npm run lint
+```
+
+
+### Format the files
+```bash
+yarn format
+# or
+npm run format
+```
+
+
+
+### Build the app for production
+```bash
+quasar build
+```
+
+### Customize the configuration
+See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js).
