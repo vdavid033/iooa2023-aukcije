@@ -224,9 +224,9 @@ export default {
         vrijeme_pocetka: this.date,
         vrijeme_zavrsetka: this.date2,
         pocetna_cijena: this.cijena,
-        svrha_donacije: "Svrha",
-        id_korisnika: 1,
-        sifra_kategorije: 1,
+        svrha_donacije: this.svrha,
+        id_korisnika: this.korisnik,
+        sifra_kategorije: this.categories,
       };
 
       try {
