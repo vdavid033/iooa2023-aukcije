@@ -8,7 +8,7 @@
             size="15px"
             name="send"
             rel="stylesheet"
-            to="/"
+            to="/IndexPage"
             color="red"
             label="Natrag"
           />
@@ -22,8 +22,24 @@
           filled
           type="double"
           label="Naziv proizvoda"
+          v-model="naziv"
           lazy-rules
           :rules="[(val) => (val !== null && val !== '') || 'Unesite naziv']"
+        />
+      </div>
+      <div style="width: 500px">
+        <q-select
+          filled
+          type="double"
+          lazy-rules
+          :rules="[
+            (val) => (val !== null && val !== '') || 'Odaberite kategoriju',
+          ]"
+          v-model="selectedCategory1"
+          label="Kategorija"
+          :options="categories"
+          option-label="name"
+          option-value="value"
         />
       </div>
       <div style="width: 500px">
@@ -31,25 +47,43 @@
           filled
           type="double"
           label="Početna cijena proizvoda"
+          v-model="cijena"
           lazy-rules
           :rules="[
             (val) => (val !== null && val !== '') || 'Unesite početnu cijenu',
           ]"
         />
       </div>
-    </div>
-
-    <div class="q-ml-sm q-gutter-sm">
-      <q-input
-        filled
-        style="max-width: 400px"
-        type="double"
-        label="Količina proizvoda"
-        lazy-rules
-        :rules="[
-          (val) => (val !== null && val !== '') || 'Unesite količinu proizvoda',
-        ]"
-      />
+      <div style="width: 500px">
+        <q-select
+          filled
+          type="double"
+          lazy-rules
+          :rules="[
+            (val) => (val !== null && val !== '') || 'Odaberite humanitarnu svrhu aukcije',
+          ]"
+          v-model="selectedCategory2"
+          label="Svrha"
+          :options="svrha"
+          option-label="name"
+          option-value="value"
+        />
+      </div>
+      <div style="width: 500px">
+        <q-select
+          filled
+          type="integer"
+          lazy-rules
+          :rules="[
+            (val) => (val !== null && val !== '') || 'Odaberite korisnika',
+          ]"
+          v-model="selectedCategory3"
+          label="Korisnik"
+          :options="korisnik"
+          option-label="name"
+          option-value="value"
+        />
+      </div>
     </div>
     <div class="q-ml-sm flex flex-start q-gutter-sm">
       <q-uploader style="max-width: 500px" label="Umetnite slike proizvoda" />
@@ -134,39 +168,77 @@
     </div>
 
     <div class="q-ml-sm flex justify-center q-gutter-sm">
-      <q-btn label="Postavi" type="submit" color="green" class="q-ml-sm" />
+      <q-btn
+        label="Postavi"
+        @click="submitForm"
+        color="green"
+        class="q-ml-sm"
+      />
       <q-btn label="Otkaži" type="submit" color="red" class="q-ml-sm" />
     </div>
-    <button @click="handleClick()">Click me</button>
   </q-card>
 </template>
 <script>
-import { defineComponent, ref } from "vue";
-import axios from "axios";
-
-const baseUrl = "http://localhost:3306/api/";
+import { ref } from "vue";
+import axios from "axios"; // Import axios
 
 export default {
-  methods: {
-    handleClick() {
-      axios
-        .get(baseUrl + "all-predmet", {
-          // data: 'Some data'
-        })
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
-  },
-
   setup() {
     return {
       date: ref("2023-03-27 12:44"),
       date2: ref("2023-03-27 12:44"),
     };
+  },
+  data() {
+    return {
+      naziv_predmeta: "",
+      selectedCategory1: null,
+      selectedCategory2: null,
+      selectedCategory3: null,
+      pocetna_cijena: "",
+      slika: null,
+      categories: [
+        { name: "Umjetnina", value: "art" },
+        { name: "Automobili", value: "cars" },
+        { name: "Nakit", value: "jewelry" },
+        { name: "Ostalo", value: "other" },
+      ],
+      svrha: [
+        { name: "Za osobe pogođene potresom", value: "Potres" },
+        { name: "Za osobe pogođene poplavom", value: "Poplava" },
+        { name: "Za osobe pogođene požarom", value: "Požar" },
+        { name: "Ostalo", value: "other" },
+      ],
+      korisnik: [
+        { name: "1", value: "prvi" },
+        { name: "2", value: "drugi" },
+        { name: "3", value: "treci" },
+      ],
+    };
+  },
+  methods: {
+    async submitForm() {
+      const sampleData = {
+        naziv_predmeta: this.naziv,
+        slika: "slika.jpg",
+        vrijeme_pocetka: this.date,
+        vrijeme_zavrsetka: this.date2,
+        pocetna_cijena: this.cijena,
+        svrha_donacije: this.svrha,
+        id_korisnika: this.korisnik,
+        sifra_kategorije: this.categories,
+      };
+
+      try {
+        const response = await axios.post(
+          "http://localhost:3000/unosPredmeta",
+          sampleData
+        );
+        console.log(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    },
   },
 };
 </script>

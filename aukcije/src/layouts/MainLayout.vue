@@ -73,12 +73,9 @@
           />
 
          <q-space /><q-space /><q-space /><q-space /><q-space /><q-space /><q-space /><q-space />
-          <router-link to="/PostaviAukciju" class="link-style">
-            <q-btn label="Sell" color="positive" class="q-mr-md" />
-          </router-link>
-          <router-link to="/Moj_profil" class="link-style">
+       <!-- <router-link to="/Moj_profil" class="link-style">
           <q-btn label="My Profile" color="primary" class="q-mr-md" />
-        </router-link>
+        </router-link>-->
         <router-link to="/Prijava_m" class="link-style">
           <q-btn label="Odjava" color="negative" class="q-mr-md" />
         </router-link>
@@ -90,7 +87,7 @@
         <q-item-label header class="text-bold text-black">
           Mogućnosti
         </q-item-label>
-
+        
         <div class="q-pa-sm col">
           <!--        Za navigaciju bez otvaranja novog tab-a-->
           <div class="q-pa-sm col">
