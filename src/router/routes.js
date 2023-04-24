@@ -15,6 +15,9 @@ const routes = [
     },
     {path: "Prijava_m",
        component: () => import("pages/Prijava_m.vue"),
+    },
+    {path: "Registracija_m",
+       component: () => import("pages/Registracija_m.vue"),
     }
     ],
   },
