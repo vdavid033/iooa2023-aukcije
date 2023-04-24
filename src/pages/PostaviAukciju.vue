@@ -69,6 +69,21 @@
           option-value="value"
         />
       </div>
+      <div style="width: 500px">
+        <q-select
+          filled
+          type="integer"
+          lazy-rules
+          :rules="[
+            (val) => (val !== null && val !== '') || 'Odaberite korisnika',
+          ]"
+          v-model="selectedCategory3"
+          label="Korisnik"
+          :options="korisnik"
+          option-label="name"
+          option-value="value"
+        />
+      </div>
     </div>
     <div class="q-ml-sm flex flex-start q-gutter-sm">
       <q-uploader style="max-width: 500px" label="Umetnite slike proizvoda" />
@@ -179,6 +194,7 @@ export default {
       naziv_predmeta: "",
       selectedCategory1: null,
       selectedCategory2: null,
+      selectedCategory3: null,
       pocetna_cijena: "",
       slika: null,
       categories: [
@@ -192,6 +208,11 @@ export default {
         { name: "Za osobe pogođene poplavom", value: "Poplava" },
         { name: "Za osobe pogođene požarom", value: "Požar" },
         { name: "Ostalo", value: "other" },
+      ],
+      korisnik: [
+        { name: "1", value: "prvi" },
+        { name: "2", value: "drugi" },
+        { name: "3", value: "treci" },
       ],
     };
   },
