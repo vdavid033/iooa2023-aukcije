@@ -101,13 +101,6 @@
               </router-link>
             </q-btn>
           </div>
-          <div class="q-pa-sm col">
-            <q-btn class="flex flex-center" style="width: 280px">
-              <router-link to="prikaz" class="link-style"
-                >Prikaz Aukcije</router-link
-              >
-            </q-btn>
-          </div>
         </div>
       </q-list>
     </q-drawer>
