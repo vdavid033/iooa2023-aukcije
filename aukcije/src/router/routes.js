@@ -1,19 +1,27 @@
+import Pocetna from "pages/Pocetna.vue";
+import PostaviAukciju from "pages/PostaviAukciju.vue";
+import PrikazAukcije from "pages/PrikazAukcije.vue";
+
 const routes = [
   {
     path: "/",
     component: () => import("layouts/MainLayout.vue"),
     children: [
       {
-        path: "postavi",
-        component: () => import("pages/PostaviAukciju.vue"),
+        path: "/",
+        redirect: "/pocetna",
       },
       {
-        path: "/",
-        component: () => import("pages/Pocetna.vue"),
+        path: "pocetna",
+        component: Pocetna,
+      },
+      {
+        path: "postavi",
+        component: PostaviAukciju,
       },
       {
         path: "prikaz",
-        component: () => import("pages/PrikazAukcije.vue"),
+        component: PrikazAukcije,
       },
     ],
   },
