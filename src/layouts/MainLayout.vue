@@ -82,7 +82,9 @@
           <router-link to="/Moj_profil" class="link-style">
           <q-btn label="My Profile" color="primary" class="q-mr-md" />
         </router-link>
-        
+        <router-link to="/Prijava_m" class="link-style">
+          <q-btn label="Odjava" color="negative" class="q-mr-md" />
+        </router-link>
         </q-toolbar>
     </q-header>
 
