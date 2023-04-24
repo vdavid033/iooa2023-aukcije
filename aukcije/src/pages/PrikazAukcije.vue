@@ -118,7 +118,7 @@
 import { ref } from "vue";
 import axios from "axios";
 
-const baseUrl = "http://localhost:3306/api/";
+const baseUrl = "http://localhost:3000/api/";
 
 export default {
   computed: {

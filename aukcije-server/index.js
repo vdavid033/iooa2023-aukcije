@@ -5,7 +5,7 @@ const mysql = require('mysql')
 const {join} = require("path");
 
 const app = express()
-const port = 3306
+const port = 3000
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
