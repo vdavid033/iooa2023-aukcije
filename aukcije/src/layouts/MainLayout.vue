@@ -93,14 +93,21 @@
           <div class="q-pa-sm col">
             <q-btn class="flex flex-center" style="width: 280px">
               <router-link to="/" class="link-style"
-                >Početna stranica</router-link
-              >
+                >Početna stranica</router-link>
             </q-btn>
+            
           </div>
           <div class="q-pa-sm col">
             <q-btn class="flex flex-center" style="width: 280px">
               <router-link to="postavi" class="link-style"
                 >Dodaj aukciju
+              </router-link>
+            </q-btn>
+          </div>
+          <div class="q-pa-sm col">
+            <q-btn class="flex flex-center" style="width: 280px">
+              <router-link to="/Moj_profil" class="link-style"
+                >Moj profil
               </router-link>
             </q-btn>
           </div>

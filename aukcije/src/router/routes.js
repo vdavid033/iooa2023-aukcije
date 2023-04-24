@@ -20,6 +20,10 @@ const routes = [
         component: PostaviAukciju,
       },
       {
+        path: "Moj_profil",
+       component: () => import("pages/Moj_profil.vue"),
+      },
+      {
         path: "prikaz",
         component: PrikazAukcije,
       },
