@@ -35,7 +35,7 @@
           :rules="[
             (val) => (val !== null && val !== '') || 'Odaberite kategoriju',
           ]"
-          v-model="selectedCategory"
+          v-model="selectedCategory1"
           label="Kategorija"
           :options="categories"
           option-label="name"
@@ -52,6 +52,21 @@
           :rules="[
             (val) => (val !== null && val !== '') || 'Unesite početnu cijenu',
           ]"
+        />
+      </div>
+      <div style="width: 500px">
+        <q-select
+          filled
+          type="double"
+          lazy-rules
+          :rules="[
+            (val) => (val !== null && val !== '') || 'Odaberite humanitarnu svrhu aukcije',
+          ]"
+          v-model="selectedCategory2"
+          label="Svrha"
+          :options="svrha"
+          option-label="name"
+          option-value="value"
         />
       </div>
     </div>
@@ -162,13 +177,20 @@ export default {
   data() {
     return {
       naziv_predmeta: "",
-      selectedCategory: null,
+      selectedCategory1: null,
+      selectedCategory2: null,
       pocetna_cijena: "",
       slika: null,
       categories: [
         { name: "Umjetnina", value: "art" },
         { name: "Automobili", value: "cars" },
         { name: "Nakit", value: "jewelry" },
+        { name: "Ostalo", value: "other" },
+      ],
+      svrha: [
+        { name: "Za osobe pogođene potresom", value: "Potres" },
+        { name: "Za osobe pogođene poplavom", value: "Poplava" },
+        { name: "Za osobe pogođene požarom", value: "Požar" },
         { name: "Ostalo", value: "other" },
       ],
     };
