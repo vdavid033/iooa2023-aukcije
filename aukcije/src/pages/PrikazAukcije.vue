@@ -37,7 +37,7 @@
       <div style="width: 500px">
         <q-field rounded filled label="Količina proizvoda" stack-label>
           <template v-slot:control>
-            <div class="self-center full-width no-outline" tabindex="0">..</div>
+            <div class="self-center full-width no-outline" tabindex="0">{{ item.kolicina  }}</div>
           </template>
         </q-field>
       </div>
@@ -55,9 +55,8 @@
         <div style="width: 400px">
           <q-field rounded filled label="Početno vrijeme aukcije" stack-label>
             <template v-slot:control>
-              <div class="self-center full-width no-outline" tabindex="0">
-                ..
-              </div>
+              <div class="self-center full-width no-outline" tabindex="0">{{ item.vrijeme_pocetka }}</div>
+               
             </template>
           </q-field>
         </div>
@@ -65,18 +64,15 @@
         <div style="width: 400px">
           <q-field rounded filled label="Završno vrijeme aukcije" stack-label>
             <template v-slot:control>
-              <div class="self-center full-width no-outline" tabindex="0">
-                ..
-              </div>
+              <div class="self-center full-width no-outline" tabindex="0">{{ item.vrijeme_zavrsetka }}</div>
             </template>
           </q-field>
         </div>
         <div style="width: 600px">
           <q-field rounded filled label="Opis proizvoda" stack-label>
             <template v-slot:control>
-              <div class="self-center full-width no-outline" tabindex="0">
-                ..
-              </div>
+              <div class="self-center full-width no-outline" tabindex="0">{{ item.svrha_donacije  }}</div>
+               
             </template>
           </q-field>
         </div>
