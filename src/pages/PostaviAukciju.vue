@@ -1,145 +1,154 @@
 <template>
-    <q-card class="q-pa-sm q-gutter-sm" flat bordered>
-      <q-card-section>
-        <div class="text-h3 text-bold text-center text-blue-7 q-ml-sm">
-          Postavi aukciju
-          <div class="q-ml-sm flex justify-end q-gutter-sm">
-            <q-btn
-              size="15px"
-              name="send"
-              rel="stylesheet"
-              to="/IndexPage"
-              color="red"
-              label="Natrag"
-            />
-          </div>
-        </div>
-      </q-card-section>
-      <q-separator color="red" />
-      <div class="q-ml-sm flex flex-start q-gutter-sm">
-        <div style="width: 500px">
-          <q-input
-            filled
-            type="double"
-            label="Naziv proizvoda"
-            lazy-rules
-            :rules="[(val) => (val !== null && val !== '') || 'Unesite naziv']"
+  <q-card class="q-pa-sm q-gutter-sm" flat bordered>
+    <q-card-section>
+      <div class="text-h3 text-bold text-center text-blue-7 q-ml-sm">
+        Postavi aukciju
+        <div class="q-ml-sm flex justify-end q-gutter-sm">
+          <q-btn
+            size="15px"
+            name="send"
+            rel="stylesheet"
+            to="/IndexPage"
+            color="red"
+            label="Natrag"
           />
         </div>
-        <div style="width: 500px">
-          <q-select
+      </div>
+    </q-card-section>
+    <q-separator color="red" />
+    <div class="q-ml-sm flex flex-start q-gutter-sm">
+      <div style="width: 500px">
+        <q-input
           filled
-            type="double"
-            lazy-rules
-            :rules="[(val) => (val !== null && val !== '') || 'Odaberite kategoriju']"
-    v-model="selectedCategory"
-    label="Kategorija"
-    :options="categories"
-    option-label="name"
-    option-value="value"
-  />
-        </div>
-        <div style="width: 500px">
-          <q-input
-            filled
-            type="double"
-            label="Početna cijena proizvoda"
-            lazy-rules
-            :rules="[
-              (val) => (val !== null && val !== '') || 'Unesite početnu cijenu',
-            ]"
-          />
-        </div>
+          type="double"
+          label="Naziv proizvoda"
+          v-model="naziv"
+          lazy-rules
+          :rules="[(val) => (val !== null && val !== '') || 'Unesite naziv']"
+        />
       </div>
-      <div class="q-ml-sm flex flex-start q-gutter-sm">
-        <q-uploader style="max-width: 500px" label="Umetnite slike proizvoda" />
-        <div style="width: 300px">
-          <q-input filled v-model="date" label="Datum i vrijeme početka aukcije">
-            <template v-slot:prepend>
-              <q-icon name="event" class="cursor-pointer">
-                <q-popup-proxy
-                  cover
-                  transition-show="scale"
-                  transition-hide="scale"
-                >
-                  <q-date v-model="date" mask="YYYY-MM-DD HH:mm">
-                    <div class="row items-center justify-end">
-                      <q-btn v-close-popup label="Close" color="primary" flat />
-                    </div>
-                  </q-date>
-                </q-popup-proxy>
-              </q-icon>
-            </template>
-
-            <template v-slot:append>
-              <q-icon name="access_time" class="cursor-pointer">
-                <q-popup-proxy
-                  cover
-                  transition-show="scale"
-                  transition-hide="scale"
-                >
-                  <q-time v-model="date" mask="YYYY-MM-DD HH:mm" format24h>
-                    <div class="row items-center justify-end">
-                      <q-btn v-close-popup label="Close" color="primary" flat />
-                    </div>
-                  </q-time>
-                </q-popup-proxy>
-              </q-icon>
-            </template>
-          </q-input>
-        </div>
-        <div style="width: 300px">
-          <q-input
-            filled
-            v-model="date2"
-            label="Datum i vrijeme završetka aukcije"
-          >
-            <template v-slot:prepend>
-              <q-icon name="event" class="cursor-pointer">
-                <q-popup-proxy
-                  cover
-                  transition-show="scale"
-                  transition-hide="scale"
-                >
-                  <q-date v-model="date2" mask="YYYY-MM-DD HH:mm">
-                    <div class="row items-center justify-end">
-                      <q-btn v-close-popup label="Close" color="primary" flat />
-                    </div>
-                  </q-date>
-                </q-popup-proxy>
-              </q-icon>
-            </template>
-
-            <template v-slot:append>
-              <q-icon name="access_time" class="cursor-pointer">
-                <q-popup-proxy
-                  cover
-                  transition-show="scale"
-                  transition-hide="scale"
-                >
-                  <q-time v-model="date2" mask="YYYY-MM-DD HH:mm" format24h>
-                    <div class="row items-center justify-end">
-                      <q-btn v-close-popup label="Close" color="primary" flat />
-                    </div>
-                  </q-time>
-                </q-popup-proxy>
-              </q-icon>
-            </template>
-          </q-input>
-        </div>
+      <div style="width: 500px">
+        <q-select
+          filled
+          type="double"
+          lazy-rules
+          :rules="[
+            (val) => (val !== null && val !== '') || 'Odaberite kategoriju',
+          ]"
+          v-model="selectedCategory"
+          label="Kategorija"
+          :options="categories"
+          option-label="name"
+          option-value="value"
+        />
       </div>
-
-      <div class="q-pa-sm" style="max-width: 500px">
-        <q-input label="Opis proizvoda" v-model="text" filled type="textarea" />
+      <div style="width: 500px">
+        <q-input
+          filled
+          type="double"
+          label="Početna cijena proizvoda"
+          v-model="cijena"
+          lazy-rules
+          :rules="[
+            (val) => (val !== null && val !== '') || 'Unesite početnu cijenu',
+          ]"
+        />
       </div>
+    </div>
+    <div class="q-ml-sm flex flex-start q-gutter-sm">
+      <q-uploader style="max-width: 500px" label="Umetnite slike proizvoda" />
+      <div style="width: 300px">
+        <q-input filled v-model="date" label="Datum i vrijeme početka aukcije">
+          <template v-slot:prepend>
+            <q-icon name="event" class="cursor-pointer">
+              <q-popup-proxy
+                cover
+                transition-show="scale"
+                transition-hide="scale"
+              >
+                <q-date v-model="date" mask="YYYY-MM-DD HH:mm">
+                  <div class="row items-center justify-end">
+                    <q-btn v-close-popup label="Close" color="primary" flat />
+                  </div>
+                </q-date>
+              </q-popup-proxy>
+            </q-icon>
+          </template>
 
-      <div class="q-ml-sm flex justify-center q-gutter-sm">
-        <q-btn label="Postavi" @click="submitForm" color="green" class="q-ml-sm" />
-        <q-btn label="Otkaži" type="submit" color="red" class="q-ml-sm" />
+          <template v-slot:append>
+            <q-icon name="access_time" class="cursor-pointer">
+              <q-popup-proxy
+                cover
+                transition-show="scale"
+                transition-hide="scale"
+              >
+                <q-time v-model="date" mask="YYYY-MM-DD HH:mm" format24h>
+                  <div class="row items-center justify-end">
+                    <q-btn v-close-popup label="Close" color="primary" flat />
+                  </div>
+                </q-time>
+              </q-popup-proxy>
+            </q-icon>
+          </template>
+        </q-input>
       </div>
-    </q-card>
-  </template>
-  <script>
+      <div style="width: 300px">
+        <q-input
+          filled
+          v-model="date2"
+          label="Datum i vrijeme završetka aukcije"
+        >
+          <template v-slot:prepend>
+            <q-icon name="event" class="cursor-pointer">
+              <q-popup-proxy
+                cover
+                transition-show="scale"
+                transition-hide="scale"
+              >
+                <q-date v-model="date2" mask="YYYY-MM-DD HH:mm">
+                  <div class="row items-center justify-end">
+                    <q-btn v-close-popup label="Close" color="primary" flat />
+                  </div>
+                </q-date>
+              </q-popup-proxy>
+            </q-icon>
+          </template>
+
+          <template v-slot:append>
+            <q-icon name="access_time" class="cursor-pointer">
+              <q-popup-proxy
+                cover
+                transition-show="scale"
+                transition-hide="scale"
+              >
+                <q-time v-model="date2" mask="YYYY-MM-DD HH:mm" format24h>
+                  <div class="row items-center justify-end">
+                    <q-btn v-close-popup label="Close" color="primary" flat />
+                  </div>
+                </q-time>
+              </q-popup-proxy>
+            </q-icon>
+          </template>
+        </q-input>
+      </div>
+    </div>
+
+    <div class="q-pa-sm" style="max-width: 500px">
+      <q-input label="Opis proizvoda" v-model="text" filled type="textarea" />
+    </div>
+
+    <div class="q-ml-sm flex justify-center q-gutter-sm">
+      <q-btn
+        label="Postavi"
+        @click="submitForm"
+        color="green"
+        class="q-ml-sm"
+      />
+      <q-btn label="Otkaži" type="submit" color="red" class="q-ml-sm" />
+    </div>
+  </q-card>
+</template>
+<script>
 import { ref } from "vue";
 import axios from "axios"; // Import axios
 
@@ -152,7 +161,10 @@ export default {
   },
   data() {
     return {
+      naziv_predmeta: "",
       selectedCategory: null,
+      pocetna_cijena: "",
+      slika: null,
       categories: [
         { name: "Umjetnina", value: "art" },
         { name: "Automobili", value: "cars" },
@@ -163,21 +175,22 @@ export default {
   },
   methods: {
     async submitForm() {
-
       const sampleData = {
-        sifra_predmeta: 1234,
-        naziv_predmeta: "Test",
-        slika: "test.jpg",
-        vrijeme_pocetka: "2023-03-27 12:00:00",
-        vrijeme_zavrsetka: "2023-03-27 14:00:00",
-        pocetna_cijena: 100,
-        svrha_donacije: "Test svrha",
+        naziv_predmeta: this.naziv,
+        slika: "slika.jpg",
+        vrijeme_pocetka: this.date,
+        vrijeme_zavrsetka: this.date2,
+        pocetna_cijena: this.cijena,
+        svrha_donacije: "Svrha",
         id_korisnika: 1,
-        sifra_kategorije: 1
+        sifra_kategorije: 1,
       };
 
       try {
-        const response = await axios.post("http://localhost:3000/unosPredmeta", sampleData);
+        const response = await axios.post(
+          "http://localhost:3000/unosPredmeta",
+          sampleData
+        );
         console.log(response.data);
       } catch (error) {
         console.error(error);
