@@ -55,7 +55,7 @@
         <div style="width: 400px">
           <q-field rounded filled label="Početno vrijeme aukcije" stack-label>
             <template v-slot:control>
-              <div class="self-center full-width no-outline" tabindex="0">{{ item.vrijeme_pocetka }}</div>
+              <div class="self-center full-width no-outline" tabindex="0">{{ formattedDate(item.vrijeme_pocetka) }}</div>
                
             </template>
           </q-field>
@@ -64,7 +64,7 @@
         <div style="width: 400px">
           <q-field rounded filled label="Završno vrijeme aukcije" stack-label>
             <template v-slot:control>
-              <div class="self-center full-width no-outline" tabindex="0">{{ item.vrijeme_zavrsetka }}</div>
+              <div class="self-center full-width no-outline" tabindex="0">{{ formattedDate(item.vrijeme_zavrsetka) }}</div>
             </template>
           </q-field>
         </div>
@@ -135,10 +135,16 @@ export default {
     axios
         .get(baseUrl + "get-predmet/" + this.sifra_predmeta, {})
         .then((response) => {
-      console.log("RESPONSEEE", response.data[0]);
       this.item = response.data[0];
     });
   },
+
+  methods: {
+    formattedDate(dateString) {
+      return new Date(dateString).toLocaleString('hr-HR').replace(',', '');
+    },
+  },
+
   setup() {
     return {
       date: ref("2023-03-27 12:44"),
