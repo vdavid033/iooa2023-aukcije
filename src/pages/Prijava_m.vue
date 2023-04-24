@@ -16,7 +16,10 @@
               <q-btn unelevated color="light-blue-7" size="lg" class="full-width" label="Prijava" />
             </q-card-actions>
             <q-card-section class="text-center q-pa-none">
-              <p class="text-grey-6">Nemate račun? Registriraj te se</p>
+              <router-link to="Registracija_m" class="link-style">
+            <p class="text-grey-6">Nemate račun? Registrirajte se!</p>
+            </router-link>
+              
             </q-card-section>
           </q-card>
         </div>
