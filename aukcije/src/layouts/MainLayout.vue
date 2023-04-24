@@ -1,82 +1,88 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
+      
       <q-toolbar>
-        <q-btn
+          <q-btn
           flat
           dense
           round
-          class="q-pa-md row q-gutter-sm"
           icon="menu"
           aria-label="Menu"
           @click="toggleLeftDrawer"
         />
-        <div class="q-pa-md col q-gutter-sm">
-          <q-toolbar-title> Aukcije </q-toolbar-title>
-        </div>
 
-        <q-btn-dropdown color="primary" :label="selectedCategory">
-          <q-list>
-            <q-item clickable v-close-popup @click="onItemClick('Kategorije')">
-              <q-item-section>
-                <q-item-label>Kategorije</q-item-label>
-              </q-item-section>
-            </q-item>
-            <q-item
-              clickable
-              v-close-popup
-              @click="onItemClick('Kategorija 1')"
-            >
-              <q-item-section>
-                <q-item-label>Kategorija 1</q-item-label>
-              </q-item-section>
-            </q-item>
+      <q-toolbar-title>
+    <!--<q-avatar>
+        <img src="~css/aukcije_logo.jpg" alt="Logo">
+      </q-avatar>-->
+  </q-toolbar-title>
+<q-space></q-space>
+          
+      
+          <q-input
+            v-model="search"
+            filled
+            placeholder="Search"
+            dense
+            class="w-200"
+            @keyup.enter="searchItems"
+          />
+      
+          <q-btn
+            icon="search"
+            color="primary"
+            class="q-mr-md"
+            @click="searchItems"
+          />
+      
+          <q-btn
+            icon="clear"
+            color="primary"
+            @click="clearSearch"
+          />
 
-            <q-item
-              clickable
-              v-close-popup
-              @click="onItemClick('Kategorija 2')"
-            >
-              <q-item-section>
-                <q-item-label>Kategorija 2</q-item-label>
-              </q-item-section>
-            </q-item>
+          <div class="q-pa-md">
+            <q-btn-dropdown color="primary" :label="selectedCategory">
+              <q-list>
+                <q-item clickable v-close-popup @click="onItemClick('Photos')">
+                  <q-item-section>
+                    <q-item-label>Kategorija 1</q-item-label>
+                  </q-item-section>
+                </q-item>
+          
+                <q-item clickable v-close-popup @click="onItemClick('Videos')">
+                  <q-item-section>
+                    <q-item-label>Kategorija 2</q-item-label>
+                  </q-item-section>
+                </q-item>
+          
+                <q-item clickable v-close-popup @click="onItemClick('Articles')">
+                  <q-item-section>
+                    <q-item-label>Kategorija 3</q-item-label>
+                  </q-item-section>
+                </q-item>
+              </q-list>
+            </q-btn-dropdown>
+          </div>
 
-            <q-item
-              clickable
-              v-close-popup
-              @click="onItemClick('Kategorija 3')"
-            >
-              <q-item-section>
-                <q-item-label>Kategorija 3</q-item-label>
-              </q-item-section>
-            </q-item>
-          </q-list>
-        </q-btn-dropdown>
+          <q-btn
+            icon="refresh"
+            color="primary"
+            @click="refresh"
+          />
 
-        <q-input
-          class="search"
-          style="width: 800px"
-          v-model="search"
-          filled
-          placeholder="Pretraži"
-          dense
-          outlined
-          @keyup.enter="searchItems"
-        />
-
-        <div class="q-pa-md col q-gutter-sm">
-          <q-btn icon="search" color="primary" @click="searchItems" />
-        </div>
-        <q-btn icon="clear" color="primary" @click="Search" />
-
-        <div class="q-ml-sm flex flex-start q-gutter-sm">
+         <q-space /><q-space /><q-space /><q-space /><q-space /><q-space /><q-space /><q-space />
           <router-link to="/PostaviAukciju" class="link-style">
-            <q-btn label="Prodaj" color="positive" class="q-mr-md" />
+            <q-btn label="Sell" color="positive" class="q-mr-md" />
           </router-link>
-          <q-btn label="Moj profil" color="primary" class="q-mr-md" />
-        </div>
-      </q-toolbar>
+          <router-link to="/Moj_profil" class="link-style">
+          <q-btn label="My Profile" color="primary" class="q-mr-md" />
+        </router-link>
+        <router-link to="/Prijava_m" class="link-style">
+          <q-btn label="Odjava" color="negative" class="q-mr-md" />
+        </router-link>
+        </q-toolbar>
     </q-header>
 
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
@@ -145,3 +151,9 @@ export default defineComponent({
   },
 });
 </script>
+<style>
+.q-avatar{
+  height: 64px;
+  width: 64px;
+}
+</style>
