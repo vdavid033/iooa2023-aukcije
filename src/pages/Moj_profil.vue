@@ -15,7 +15,7 @@
         <img src="~assets\profilna.png" alt="Profilna slika">
       </div>
     </div>
-
+ 
     <!-- predmeti na aukciji koje je korisnik postavio -->
     <h3>Vaši predmeti na aukciji</h3>
     <q-card-group class="card-group">

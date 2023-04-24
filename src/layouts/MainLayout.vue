@@ -82,6 +82,7 @@
           <router-link to="/Moj_profil" class="link-style">
           <q-btn label="My Profile" color="primary" class="q-mr-md" />
         </router-link>
+        
         </q-toolbar>
     </q-header>
 

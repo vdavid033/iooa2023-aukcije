@@ -12,6 +12,9 @@ const routes = [
     },
     {path: "Moj_profil",
        component: () => import("pages/Moj_profil.vue"),
+    },
+    {path: "Prijava_m",
+       component: () => import("pages/Prijava_m.vue"),
     }
     ],
   },
