@@ -35,9 +35,9 @@
 
     <div class="q-ml-sm flex flex-start q-gutter-sm">
       <div style="width: 500px">
-        <q-field rounded filled label="Količina proizvoda" stack-label>
+        <q-field rounded filled label="Svrha donacije " stack-label>
           <template v-slot:control>
-            <div class="self-center full-width no-outline" tabindex="0">{{ item.kolicina  }}</div>
+            <div class="self-center full-width no-outline" tabindex="0">{{ item.svrha_donacije  }}</div>
           </template>
         </q-field>
       </div>
@@ -71,7 +71,7 @@
         <div style="width: 600px">
           <q-field rounded filled label="Opis proizvoda" stack-label>
             <template v-slot:control>
-              <div class="self-center full-width no-outline" tabindex="0">{{ item.svrha_donacije  }}</div>
+              <div class="self-center full-width no-outline" tabindex="0">{{ item.opis_predmeta  }}</div>
                
             </template>
           </q-field>
