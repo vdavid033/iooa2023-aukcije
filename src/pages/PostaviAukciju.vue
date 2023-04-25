@@ -204,6 +204,7 @@ export default {
     return {
       sifra_predmeta: null,
       naziv_predmeta: "",
+      opis_predmeta: "",
       selectedCategory1: null,
       selectedCategory2: null,
       selectedCategory3: null,
