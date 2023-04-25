@@ -79,9 +79,7 @@
         <div style="width: 400px">
           <q-field rounded filled label="Trenutna cijena " stack-label>
             <template v-slot:control>
-              <div class="self-center full-width no-outline" tabindex="0">
-                ..
-              </div>
+              <div class="self-center full-width no-outline" tabindex="0">.. </div>
             </template>
           </q-field>
         </div>
@@ -149,8 +147,6 @@ export default {
     return {
       date: ref("2023-03-27 12:44"),
       date2: ref("2023-03-27 12:44"),
-      slide: ref(2),
-      autoplay: ref(false),
       dialog: ref(false),
       small: ref(false),
       model: ref(null),

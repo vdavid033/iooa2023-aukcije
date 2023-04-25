@@ -1,6 +1,7 @@
 import Pocetna from "pages/Pocetna.vue";
 import PostaviAukciju from "pages/PostaviAukciju.vue";
 import PrikazAukcije from "pages/PrikazAukcije.vue";
+import PrikazPredmetaKategorije from "pages/PrikazPredmetaKategorije.vue";
 
 const routes = [
   {
@@ -22,6 +23,10 @@ const routes = [
       {
         path: "prikaz",
         component: PrikazAukcije,
+      },
+      {
+        path: "kategorija",
+        component: PrikazPredmetaKategorije,
       },
     ],
   },
