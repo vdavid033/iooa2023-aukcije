@@ -20,7 +20,7 @@
       <div style="width: 500px">
         <q-input
           filled
-          type="double"
+          type="text"
           label="Naziv proizvoda"
           v-model="naziv"
           lazy-rules
@@ -30,16 +30,17 @@
       <div style="width: 500px">
         <q-select
           filled
-          type="double"
+          type="int"
           lazy-rules
-          :rules="[
-            (val) => (val !== null && val !== '') || 'Odaberite kategoriju',
-          ]"
+          emit-value
           v-model="selectedCategory1"
           label="Kategorija"
           :options="categories"
           option-label="name"
           option-value="value"
+          :rules="[
+            (val) => (val !== null && val !== '') || 'Odaberite kategoriju',
+          ]"
         />
       </div>
       <div style="width: 500px">
@@ -57,16 +58,17 @@
       <div style="width: 500px">
         <q-select
           filled
-          type="double"
+          type="text"
           lazy-rules
-          :rules="[
-            (val) => (val !== null && val !== '') || 'Odaberite humanitarnu svrhu aukcije',
-          ]"
           v-model="selectedCategory2"
           label="Svrha"
           :options="svrha"
+          emit-value
           option-label="name"
           option-value="value"
+           :rules="[
+            (val) => (val !== null && val !== '') || 'Odaberite humanitarnu svrhu aukcije',
+          ]"
         />
       </div>
       <div style="width: 500px">
@@ -74,14 +76,15 @@
           filled
           type="integer"
           lazy-rules
-          :rules="[
-            (val) => (val !== null && val !== '') || 'Odaberite korisnika',
-          ]"
+          emit-value
           v-model="selectedCategory3"
           label="Korisnik"
           :options="korisnik"
           option-label="name"
           option-value="value"
+          :rules="[
+            (val) => (val !== null && val !== '') || 'Odaberite korisnika',
+          ]"
         />
       </div>
     </div>
@@ -163,9 +166,16 @@
       </div>
     </div>
 
-    <div class="q-pa-sm" style="max-width: 500px">
-      <q-input label="Opis proizvoda" v-model="text" filled type="textarea" />
-    </div>
+    <div style="width: 500px">
+        <q-input
+          filled
+          type="text"
+          label="Opis proizvoda"
+          v-model="opispredmeta"
+          lazy-rules
+          :rules="[(val) => (val !== null && val !== '') || 'Unesite opis']"
+        />
+      </div>
 
     <div class="q-ml-sm flex justify-center q-gutter-sm">
       <q-btn
@@ -191,42 +201,47 @@ export default {
   },
   data() {
     return {
+      sifra_predmeta: null,
       naziv_predmeta: "",
+      opis_predmeta: "",
       selectedCategory1: null,
       selectedCategory2: null,
       selectedCategory3: null,
       pocetna_cijena: "",
       slika: null,
       categories: [
-        { name: "Umjetnina", value: "art" },
-        { name: "Automobili", value: "cars" },
-        { name: "Nakit", value: "jewelry" },
-        { name: "Ostalo", value: "other" },
+        { name: "Namjestaj", value: "1" },
+        { name: "Automobili", value: "2" },
+        { name: "Nakit", value: "3" },
+        { name: "Ostalo", value: "4" },
       ],
       svrha: [
         { name: "Za osobe pogođene potresom", value: "Potres" },
         { name: "Za osobe pogođene poplavom", value: "Poplava" },
         { name: "Za osobe pogođene požarom", value: "Požar" },
-        { name: "Ostalo", value: "other" },
+        { name: "Ostalo", value: "ostalo" },
       ],
       korisnik: [
-        { name: "1", value: "prvi" },
-        { name: "2", value: "drugi" },
-        { name: "3", value: "treci" },
+        { name: "Masimo", value: "1" },
+        { name: "Emil", value: "2" },
+        { name: "Dorijan", value: "3" },
+        {name: "Dario", value: "4"},
       ],
     };
   },
   methods: {
     async submitForm() {
       const sampleData = {
+        sifra_predmeta: this.sifra_predmeta,
         naziv_predmeta: this.naziv,
+        opis_predmeta: this.opispredmeta,
         slika: "slika.jpg",
         vrijeme_pocetka: this.date,
         vrijeme_zavrsetka: this.date2,
         pocetna_cijena: this.cijena,
-        svrha_donacije: this.svrha,
-        id_korisnika: this.korisnik,
-        sifra_kategorije: this.categories,
+        svrha_donacije: this.selectedCategory2,
+        id_korisnika: this.selectedCategory3,
+        sifra_kategorije: this.selectedCategory1,
       };
 
       try {

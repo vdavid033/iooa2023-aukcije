@@ -14,7 +14,7 @@
 
       <q-toolbar-title>
     <!--<q-avatar>
-        <img src="~css/aukcije_logo.jpg" alt="Logo">
+        <img src="~aukcije/css/aukcije_logo.jpg" alt="Logo">
       </q-avatar>-->
   </q-toolbar-title>
 <q-space></q-space>
