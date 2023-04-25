@@ -32,14 +32,15 @@
           filled
           type="int"
           lazy-rules
-          :rules="[
-            (val) => (val !== null && val !== '') || 'Odaberite kategoriju',
-          ]"
+          emit-value
           v-model="selectedCategory1"
           label="Kategorija"
           :options="categories"
           option-label="name"
           option-value="value"
+          :rules="[
+            (val) => (val !== null && val !== '') || 'Odaberite kategoriju',
+          ]"
         />
       </div>
       <div style="width: 500px">
@@ -62,6 +63,7 @@
           v-model="selectedCategory2"
           label="Svrha"
           :options="svrha"
+          emit-value
           option-label="name"
           option-value="value"
           :rules="[
@@ -75,14 +77,15 @@
           filled
           type="integer"
           lazy-rules
-          :rules="[
-            (val) => (val !== null && val !== '') || 'Odaberite korisnika',
-          ]"
+          emit-value
           v-model="selectedCategory3"
           label="Korisnik"
           :options="korisnik"
           option-label="name"
           option-value="value"
+          :rules="[
+            (val) => (val !== null && val !== '') || 'Odaberite korisnika',
+          ]"
         />
       </div>
     </div>
@@ -206,37 +209,38 @@ export default {
       pocetna_cijena: "",
       slika: null,
       categories: [
-        { name: "Umjetnina", value: "art" },
-        { name: "Automobili", value: "cars" },
-        { name: "Nakit", value: "jewelry" },
-        { name: "Ostalo", value: "other" },
+        { name: "Namjestaj", value: "1" },
+        { name: "Automobili", value: "2" },
+        { name: "Nakit", value: "3" },
+        { name: "Ostalo", value: "4" },
       ],
       svrha: [
         { name: "Za osobe pogođene potresom", value: "Potres" },
         { name: "Za osobe pogođene poplavom", value: "Poplava" },
         { name: "Za osobe pogođene požarom", value: "Požar" },
-        { name: "Ostalo", value: "other" },
+        { name: "Ostalo", value: "ostalo" },
       ],
       korisnik: [
-        { name: "1", value: "prvi" },
-        { name: "2", value: "drugi" },
-        { name: "3", value: "treci" },
+        { name: "Masimo", value: "1" },
+        { name: "Emil", value: "2" },
+        { name: "Dorijan", value: "3" },
+        { name: "Dario", value: "4" },
       ],
     };
   },
   methods: {
     async submitForm() {
       const sampleData = {
-        sifra_predmeta :12389,
+        sifra_predmeta :12388,
         naziv_predmeta: this.naziv,
         opis_predmeta : this.opispredmeta,
         slika: "slika.jpg",
         vrijeme_pocetka: this.date,
         vrijeme_zavrsetka: this.date2,
         pocetna_cijena: this.cijena,
-        svrha_donacije: "svrha",
-        id_korisnika: 1,
-        sifra_kategorije: 1,
+        svrha_donacije: this.selectedCategory2,
+        id_korisnika: this.selectedCategory3,
+        sifra_kategorije: this.selectedCategory1,
         
       };
 
