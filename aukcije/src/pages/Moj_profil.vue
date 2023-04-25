@@ -11,9 +11,9 @@
         <p>E-mail: ivoivic@gmail.com</p>
         <p>OIB: 12345678908</p>
       </div>
-      <!--<div class="user-info-image">
+      <div class="user-info-image">
         <img src="~assets\profilna.png" alt="Profilna slika">
-      </div>-->
+      </div>
     </div>
  
     <!-- predmeti na aukciji koje je korisnik postavio -->
