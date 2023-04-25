@@ -202,6 +202,7 @@ export default {
   },
   data() {
     return {
+      sifra_predmeta: null,
       naziv_predmeta: "",
       selectedCategory1: null,
       selectedCategory2: null,
@@ -231,7 +232,7 @@ export default {
   methods: {
     async submitForm() {
       const sampleData = {
-        sifra_predmeta :12388,
+        sifra_predmeta : this.sifra_predmeta,
         naziv_predmeta: this.naziv,
         opis_predmeta : this.opispredmeta,
         slika: "slika.jpg",
