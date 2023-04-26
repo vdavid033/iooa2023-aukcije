@@ -46,7 +46,20 @@ app.get('/api/get-predmet/:id', (req, res) => {
         res.send(results)
     });
 });
+app.get('/api/get-kategorija-predmet/:id', (req, res) => {
+    const { id } = req.params;
 
+    connection.query('SELECT * FROM kategorija JOIN predmet ON kategorija.sifra_kategorije = predmet.sifra_kategorije WHERE kategorija.sifra_kategorije = ?', [id], (error, results) => {
+        if (error) throw error;
+        res.send(results)
+    });
+});
+app.get('/api/all-kategorija', (req, res) => {
+    connection.query('SELECT * FROM kategorija', (error, results) => {
+        if (error) throw error;
+        res.send(results)
+    })
+})
 
 app.listen(port, () => {
     console.log(`Server running at port: ${port}`)
