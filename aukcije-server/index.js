@@ -41,7 +41,7 @@ app.get('/api/all-predmet', (req, res) => {
 app.get('/api/get-predmet/:id', (req, res) => {
     const { id } = req.params;
 
-    connection.query('SELECT sifra_predmeta, naziv_predmeta, slika, pocetna_cijena, vrijeme_pocetka, vrijeme_zavrsetka, TIME_FORMAT( SEC_TO_TIME(TIMESTAMPDIFF(SECOND, vrijeme_pocetka, vrijeme_zavrsetka)), \'%H:%i:%s\' ) AS preostalo_vrijeme, svrha_donacije, opis_predmeta FROM predmet WHERE sifra_predmeta = ?', [id], (error, results) => {
+    connection.query('SELECT naziv_predmeta, sifra_predmeta,  slika, pocetna_cijena, vrijeme_pocetka, vrijeme_zavrsetka, TIME_FORMAT( SEC_TO_TIME(TIMESTAMPDIFF(SECOND, vrijeme_pocetka, vrijeme_zavrsetka)), \'%H:%i:%s\' ) AS preostalo_vrijeme, svrha_donacije, opis_predmeta FROM predmet WHERE sifra_predmeta = ?', [id], (error, results) => {
         if (error) throw error;
         res.send(results)
     });
