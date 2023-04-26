@@ -52,7 +52,10 @@
       />
     </div>
     <div class="q-ml-sm flex flex-start q-gutter-sm">
-      <q-uploader style="max-width: 500px" label="Umetnite slike proizvoda" />
+      <div>
+        <textarea v-model="slika"></textarea>
+        <button @click="handleClick">Dodaj tekst</button>
+      </div>
       <div style="width: 300px">
         <q-input filled v-model="date" label="Datum i vrijeme početka aukcije">
           <template v-slot:prepend>
@@ -134,7 +137,13 @@
     </div>
 
     <div class="q-ml-sm flex justify-center q-gutter-sm">
-      <q-btn label="Postavi" type="submit" color="green" class="q-ml-sm" />
+      <q-btn
+        label="Postavi"
+        type="submit"
+        color="green"
+        @click="submitForm"
+        class="q-ml-sm"
+      />
       <q-btn label="Otkaži" type="submit" color="red" class="q-ml-sm" />
     </div>
     <button @click="handleClick()">Click me</button>
@@ -147,26 +156,26 @@ import axios from "axios";
 const baseUrl = "http://localhost:3306/api/";
 
 export default {
+  setup() {
+    return {
+      date: ref("2023-03-27 12:44"),
+      date2: ref("2023-03-27 12:44"),
+      slika: null,
+    };
+  },
   methods: {
     handleClick() {
       axios
-        .get(baseUrl + "all-predmet", {
-          // data: 'Some data'
+        .post(baseUrl + "unos-slike", {
+          slika: this.slika,
         })
         .then((response) => {
-          console.log(response);
+          console.log(response.data);
         })
         .catch((error) => {
           console.log(error);
         });
     },
-  },
-
-  setup() {
-    return {
-      date: ref("2023-03-27 12:44"),
-      date2: ref("2023-03-27 12:44"),
-    };
   },
 };
 </script>
