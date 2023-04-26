@@ -1,4 +1,5 @@
 import Pocetna from "pages/Pocetna.vue";
+import konverter from "pages/konverter.vue";
 import PostaviAukciju from "pages/PostaviAukciju.vue";
 import PrikazAukcije from "pages/PrikazAukcije.vue";
 import PrikazPredmetaKategorije from "pages/PrikazPredmetaKategorije.vue";
@@ -27,6 +28,10 @@ const routes = [
       {
         path: "kategorija",
         component: PrikazPredmetaKategorije,
+      },
+      {
+        path: "konverter",
+        component: konverter,
       },
     ],
   },

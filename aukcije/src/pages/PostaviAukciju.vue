@@ -51,12 +51,21 @@
         ]"
       />
     </div>
-    <div class="q-ml-sm flex flex-start q-gutter-sm">
-      <div>
-        <textarea v-model="slika"></textarea>
-        <button @click="handleClick">Dodaj tekst</button>
+    <div class="q-ml-sm flex flex-start">
+      <div class="q-pa-sm col q-gutter-sm">
+        <q-input
+          style="max-width: 300px"
+          label="Unesi link slike"
+          v-model="slika"
+          filled
+          type="textarea"
+        ></q-input>
+
+        <q-btn style="max-width: 150px" @click="handleClick"
+          >Dodaj sliku u bazu</q-btn
+        >
       </div>
-      <div style="width: 300px">
+      <div class="q-pa-md col-6 q-gutter-sm" style="width: 500px">
         <q-input filled v-model="date" label="Datum i vrijeme početka aukcije">
           <template v-slot:prepend>
             <q-icon name="event" class="cursor-pointer">
@@ -90,45 +99,46 @@
             </q-icon>
           </template>
         </q-input>
-      </div>
-      <div style="width: 300px">
-        <q-input
-          filled
-          v-model="date2"
-          label="Datum i vrijeme završetka aukcije"
-        >
-          <template v-slot:prepend>
-            <q-icon name="event" class="cursor-pointer">
-              <q-popup-proxy
-                cover
-                transition-show="scale"
-                transition-hide="scale"
-              >
-                <q-date v-model="date2" mask="YYYY-MM-DD HH:mm">
-                  <div class="row items-center justify-end">
-                    <q-btn v-close-popup label="Close" color="primary" flat />
-                  </div>
-                </q-date>
-              </q-popup-proxy>
-            </q-icon>
-          </template>
 
-          <template v-slot:append>
-            <q-icon name="access_time" class="cursor-pointer">
-              <q-popup-proxy
-                cover
-                transition-show="scale"
-                transition-hide="scale"
-              >
-                <q-time v-model="date2" mask="YYYY-MM-DD HH:mm" format24h>
-                  <div class="row items-center justify-end">
-                    <q-btn v-close-popup label="Close" color="primary" flat />
-                  </div>
-                </q-time>
-              </q-popup-proxy>
-            </q-icon>
-          </template>
-        </q-input>
+        <div>
+          <q-input
+            filled
+            v-model="date2"
+            label="Datum i vrijeme završetka aukcije"
+          >
+            <template v-slot:prepend>
+              <q-icon name="event" class="cursor-pointer">
+                <q-popup-proxy
+                  cover
+                  transition-show="scale"
+                  transition-hide="scale"
+                >
+                  <q-date v-model="date2" mask="YYYY-MM-DD HH:mm">
+                    <div class="row items-center justify-end">
+                      <q-btn v-close-popup label="Close" color="primary" flat />
+                    </div>
+                  </q-date>
+                </q-popup-proxy>
+              </q-icon>
+            </template>
+
+            <template v-slot:append>
+              <q-icon name="access_time" class="cursor-pointer">
+                <q-popup-proxy
+                  cover
+                  transition-show="scale"
+                  transition-hide="scale"
+                >
+                  <q-time v-model="date2" mask="YYYY-MM-DD HH:mm" format24h>
+                    <div class="row items-center justify-end">
+                      <q-btn v-close-popup label="Close" color="primary" flat />
+                    </div>
+                  </q-time>
+                </q-popup-proxy>
+              </q-icon>
+            </template>
+          </q-input>
+        </div>
       </div>
     </div>
 
