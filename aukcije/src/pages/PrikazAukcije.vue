@@ -79,7 +79,7 @@
         <div style="width: 400px">
           <q-field rounded filled label="Trenutna cijena " stack-label>
             <template v-slot:control>
-              <div class="self-center full-width no-outline" tabindex="0">.. </div>
+              <div class="self-center full-width no-outline" tabindex="0">{{ item.vrijednost_ponude }} </div>
             </template>
           </q-field>
         </div>
