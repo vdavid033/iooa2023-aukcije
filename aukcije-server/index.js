@@ -56,7 +56,7 @@ app.post('/unosPredmeta', function (request, response) {
       return response.send({ error: false, data: results, message: 'Predmet je dodan.' });
     });
   });
-//obdje iznad stavi  select
+//saa
   app.post('/unostrenutnaponuda', function (request, response) {
     const data = request.body;
     predmet = [[  data.id_ponude, data.vrijednost_ponude, data.vrijeme_ponude, data.id_korisnika, data.sifra_predmeta]]
