@@ -59,16 +59,16 @@ app.get("/api/get-predmet/:id", (req, res) => {
   );
 });
 app.get("/api/get-kategorija-predmet/:id", (req, res) => {
-  const { id } = req.params;
+    const { id } = req.params;
 
-  connection.query(
-    "SELECT * FROM kategorija JOIN predmet ON kategorija.sifra_kategorije = predmet.sifra_kategorije WHERE kategorija.sifra_kategorije = ?",
-    [id],
-    (error, results) => {
-      if (error) throw error;
-      res.send(results);
-    }
-  );
+    connection.query(
+        "SELECT sifra_predmeta, naziv_predmeta, slika, pocetna_cijena, vrijeme_zavrsetka, TIME_FORMAT( SEC_TO_TIME(TIMESTAMPDIFF(SECOND, vrijeme_pocetka, vrijeme_zavrsetka)), '%H:%i:%s' ) AS preostalo_vrijeme, svrha_donacije, opis_predmeta FROM predmet WHERE sifra_kategorije = ?",
+        [id],
+        (error, results) => {
+            if (error) throw error;
+            res.send(results);
+        }
+    );
 });
 app.get("/api/all-kategorija", (req, res) => {
   connection.query("SELECT * FROM kategorija", (error, results) => {
