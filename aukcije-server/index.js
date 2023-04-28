@@ -56,7 +56,18 @@ app.post('/unosPredmeta', function (request, response) {
       return response.send({ error: false, data: results, message: 'Predmet je dodan.' });
     });
   });
-//obdje iznad stavi  select
+
+  app.get('/api/get-ponuda/:id', (req, res) => {
+    const { id } = req.params;
+
+    connection.query('SELECT id_ponude, vrijednost_ponude, DATE_FORMAT(vrijeme_ponude, "%Y-%m-%d %H:%i:%s") as vrijeme_ponude, id_korisnika FROM ponuda WHERE sifra_predmeta = ?', [id], (error, results) => {
+        if (error) throw error;
+        res.send(results);
+    });
+});
+
+
+
   app.post('/unostrenutnaponuda', function (request, response) {
     const data = request.body;
     predmet = [[  data.id_ponude, data.vrijednost_ponude, data.vrijeme_ponude, data.id_korisnika, data.sifra_predmeta]]
