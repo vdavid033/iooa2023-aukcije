@@ -67,9 +67,10 @@
           option-label="name"
           option-value="value"
           :rules="[
-            (val) => (val !== null && val !== '') || 'Odaberite humanitarnu svrhu aukcije',
+            (val) =>
+              (val !== null && val !== '') ||
+              'Odaberite humanitarnu svrhu aukcije',
           ]"
-          
         />
       </div>
       <div style="width: 500px">
@@ -90,7 +91,6 @@
       </div>
     </div>
     <div class="q-ml-sm flex flex-start q-gutter-sm">
-      <q-uploader style="max-width: 500px" label="Umetnite slike proizvoda" />
       <div style="width: 300px">
         <q-input filled v-model="date" label="Datum i vrijeme početka aukcije">
           <template v-slot:prepend>
@@ -167,17 +167,36 @@
       </div>
     </div>
 
-   
     <div style="width: 500px">
-        <q-input
-          filled
-          type="text"
-          label="Opis proizvoda"
-          v-model="opispredmeta"
-          lazy-rules
-          :rules="[(val) => (val !== null && val !== '') || 'Unesite opis']"
-        />
+      <q-input
+        filled
+        type="text"
+        label="Opis proizvoda"
+        v-model="opispredmeta"
+        lazy-rules
+        :rules="[(val) => (val !== null && val !== '') || 'Unesite opis']"
+      />
+    </div>
+
+    <div>
+      <input type="file" @change="onFileChange" />
+
+      <q-btn @click="convertImage">Spremi sliku</q-btn>
+      <q-separator></q-separator>
+      <div v-if="base64Image">
+        <img :src="base64Image" />
+        <q-separator></q-separator>
+
+        <div
+          class="q-pa-sm"
+          style="max-width: 700px; overflow-wrap: break-word"
+        ></div>
       </div>
+
+      <div>
+        <q-separator></q-separator>
+      </div>
+    </div>
     <div class="q-ml-sm flex justify-center q-gutter-sm">
       <q-btn
         label="Postavi"
@@ -190,6 +209,7 @@
   </q-card>
 </template>
 <script>
+import imageCompression from "browser-image-compression";
 import { ref } from "vue";
 import axios from "axios"; // Import axios
 
@@ -210,6 +230,11 @@ export default {
       selectedCategory3: null,
       pocetna_cijena: "",
       slika: null,
+      file: null,
+      base64Image: null,
+      base64Text: null,
+      imageUrl: "",
+
       categories: [
         { name: "Namjestaj", value: "1" },
         { name: "Automobili", value: "2" },
@@ -231,19 +256,63 @@ export default {
     };
   },
   methods: {
+    async onFileChange(e) {
+      this.file = e.target.files[0];
+      await this.convertImage();
+    },
+    async convertImage() {
+      if (!this.file && !this.imageUrl) {
+        return alert("Molimo odaberite sliku ili unesite URL slike.");
+      }
+
+      const options = {
+        maxSizeMB: 1, // Maximum file size in MB
+        maxWidthOrHeight: 1920, // Maximum width or height, whichever is smaller
+        useWebWorker: true,
+      };
+
+      try {
+        let compressedFile;
+
+        if (this.imageUrl) {
+          const response = await fetch(this.imageUrl);
+          const blob = await response.blob();
+          compressedFile = await imageCompression(blob, options);
+        } else {
+          compressedFile = await imageCompression(this.file, options);
+        }
+
+        const reader = new FileReader();
+        reader.readAsDataURL(compressedFile);
+        reader.onload = () => {
+          this.base64Image = reader.result;
+          this.base64Text = reader.result.replace(
+            /^data:image\/[a-z]+;base64,/,
+            ""
+          );
+          this.slika = "data:image/jpg;base64," + this.base64Text;
+        };
+        reader.onerror = (error) => {
+          console.error(error);
+        };
+      } catch (error) {
+        console.error(error);
+        return alert("Došlo je do pogreške prilikom kompresije slike.");
+      }
+    },
+
     async submitForm() {
       const sampleData = {
-        sifra_predmeta : this.sifra_predmeta,
+        sifra_predmeta: this.sifra_predmeta,
         naziv_predmeta: this.naziv,
-        opis_predmeta : this.opispredmeta,
-        slika: "slika.jpg",
+        opis_predmeta: this.opispredmeta,
+        slika: this.slika,
         vrijeme_pocetka: this.date,
         vrijeme_zavrsetka: this.date2,
         pocetna_cijena: this.cijena,
         svrha_donacije: this.selectedCategory2,
         id_korisnika: this.selectedCategory3,
         sifra_kategorije: this.selectedCategory1,
-        
       };
 
       try {
