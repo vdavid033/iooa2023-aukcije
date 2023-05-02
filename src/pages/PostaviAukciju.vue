@@ -22,7 +22,7 @@
           filled
           type="text"
           label="Naziv proizvoda"
-          v-model="naziv"
+          v-model="naziv_predmeta"
           lazy-rules
           :rules="[(val) => (val !== null && val !== '') || 'Unesite naziv']"
         />
@@ -48,7 +48,7 @@
           filled
           type="double"
           label="Početna cijena proizvoda"
-          v-model="cijena"
+          v-model="pocetna_cijena"
           lazy-rules
           :rules="[
             (val) => (val !== null && val !== '') || 'Unesite početnu cijenu',
@@ -172,7 +172,7 @@
         filled
         type="text"
         label="Opis proizvoda"
-        v-model="opispredmeta"
+        v-model="opis_predmeta"
         lazy-rules
         :rules="[(val) => (val !== null && val !== '') || 'Unesite opis']"
       />
@@ -304,12 +304,12 @@ export default {
     async submitForm() {
       const sampleData = {
         sifra_predmeta: this.sifra_predmeta,
-        naziv_predmeta: this.naziv,
-        opis_predmeta: this.opispredmeta,
+        naziv_predmeta: this.naziv_predmeta,
+        opis_predmeta: this.opis_predmeta,
         slika: this.slika,
         vrijeme_pocetka: this.date,
         vrijeme_zavrsetka: this.date2,
-        pocetna_cijena: this.cijena,
+        pocetna_cijena: this.pocetna_cijena,
         svrha_donacije: this.selectedCategory2,
         id_korisnika: this.selectedCategory3,
         sifra_kategorije: this.selectedCategory1,
