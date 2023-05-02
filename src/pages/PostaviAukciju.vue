@@ -19,6 +19,7 @@
     <div class="q-ml-sm flex flex-start q-gutter-sm">
       <div style="width: 500px">
         <q-input
+          ref="nazivPredmetaRef"
           filled
           type="text"
           label="Naziv proizvoda"
@@ -29,6 +30,7 @@
       </div>
       <div style="width: 500px">
         <q-select
+          ref="selectedCategory1Ref"
           filled
           type="int"
           lazy-rules
@@ -45,6 +47,7 @@
       </div>
       <div style="width: 500px">
         <q-input
+          ref="pocetnaCijenaRef"
           filled
           type="double"
           label="Početna cijena proizvoda"
@@ -57,6 +60,7 @@
       </div>
       <div style="width: 500px">
         <q-select
+          ref="selectedCategory2Ref"
           filled
           type="text"
           lazy-rules
@@ -75,6 +79,7 @@
       </div>
       <div style="width: 500px">
         <q-select
+          ref="selectedCategory3Ref"
           filled
           type="integer"
           lazy-rules
@@ -169,6 +174,7 @@
 
     <div style="width: 500px">
       <q-input
+        ref="opisPredmetaRef"
         filled
         type="text"
         label="Opis proizvoda"
@@ -206,9 +212,25 @@
       />
       <q-btn label="Otkaži" type="submit" color="red" class="q-ml-sm" />
     </div>
+
+    <q-dialog v-model="showDialog">
+      <q-card>
+        <q-card-section> Predmet je uspješno dodan! </q-card-section>
+        <q-card-actions align="right">
+          <q-btn
+            flat
+            label="Close"
+            color="primary"
+            v-close-popup
+            @click="closeAndReload"
+          />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </q-card>
 </template>
 <script>
+import { QDialog } from "quasar";
 import imageCompression from "browser-image-compression";
 import { ref } from "vue";
 import axios from "axios"; // Import axios
@@ -300,6 +322,26 @@ export default {
         return alert("Došlo je do pogreške prilikom kompresije slike.");
       }
     },
+    resetForm() {
+      this.naziv_predmeta = "";
+      this.selectedCategory1 = "";
+      this.pocetna_cijena = "";
+      this.selectedCategory2 = "";
+      this.selectedCategory3 = "";
+      this.opis_predmeta = "";
+
+      this.$refs.nazivPredmetaRef.resetValidation();
+      this.$refs.selectedCategory1Ref.resetValidation();
+      this.$refs.pocetnaCijenaRef.resetValidation();
+      this.$refs.selectedCategory2Ref.resetValidation();
+      this.$refs.selectedCategory3Ref.resetValidation();
+      this.$refs.opisPredmetaRef.resetValidation();
+    },
+
+    closeAndReload() {
+      this.showDialog = false;
+      window.location.reload();
+    },
 
     async submitForm() {
       const sampleData = {
@@ -321,6 +363,8 @@ export default {
           sampleData
         );
         console.log(response.data);
+        this.showDialog = true;
+        this.resetForm();
       } catch (error) {
         console.error(error);
       }
