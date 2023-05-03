@@ -256,6 +256,7 @@ export default {
       base64Image: null,
       base64Text: null,
       imageUrl: "",
+      showDialog: false,
 
       categories: [
         { name: "Namjestaj", value: "1" },
@@ -322,21 +323,6 @@ export default {
         return alert("Došlo je do pogreške prilikom kompresije slike.");
       }
     },
-    resetForm() {
-      this.naziv_predmeta = "";
-      this.selectedCategory1 = "";
-      this.pocetna_cijena = "";
-      this.selectedCategory2 = "";
-      this.selectedCategory3 = "";
-      this.opis_predmeta = "";
-
-      this.$refs.nazivPredmetaRef.resetValidation();
-      this.$refs.selectedCategory1Ref.resetValidation();
-      this.$refs.pocetnaCijenaRef.resetValidation();
-      this.$refs.selectedCategory2Ref.resetValidation();
-      this.$refs.selectedCategory3Ref.resetValidation();
-      this.$refs.opisPredmetaRef.resetValidation();
-    },
 
     closeAndReload() {
       this.showDialog = false;
@@ -364,7 +350,6 @@ export default {
         );
         console.log(response.data);
         this.showDialog = true;
-        this.resetForm();
       } catch (error) {
         console.error(error);
       }
