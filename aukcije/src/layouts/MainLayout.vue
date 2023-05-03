@@ -92,6 +92,20 @@
           <!--        Za navigaciju bez otvaranja novog tab-a-->
           <div class="q-pa-sm col">
             <q-btn class="flex flex-center" style="width: 280px">
+              <router-link to="/prijava" class="link-style"
+                >Prijava
+              </router-link>
+            </q-btn>
+          </div>
+          <div class="q-pa-sm col">
+            <q-btn class="flex flex-center" style="width: 280px">
+              <router-link to="/registracija" class="link-style"
+                >Registracija
+              </router-link>
+            </q-btn>
+          </div>
+          <div class="q-pa-sm col">
+            <q-btn class="flex flex-center" style="width: 280px">
               <router-link to="/" class="link-style"
                 >Početna stranica</router-link>
             </q-btn>
@@ -111,13 +125,7 @@
               </router-link>
             </q-btn>
           </div>
-          <div class="q-pa-sm col">
-            <q-btn class="flex flex-center" style="width: 280px">
-              <router-link to="/registracija" class="link-style"
-                >Registracija
-              </router-link>
-            </q-btn>
-          </div>
+         
         </div>
       </q-list>
     </q-drawer>

@@ -28,6 +28,10 @@ const routes = [
         component: PrikazAukcije,
       },
       {
+        path: "prijava",
+        component: () => import("pages/Prijava_m.vue"),
+      },
+      {
         path: "registracija",
         component: () => import("pages/Registracija_m.vue"),
       },
