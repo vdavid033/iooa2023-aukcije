@@ -160,7 +160,7 @@
   </q-card>
 </template>
 <script>
-import { defineComponent, ref } from "vue";
+import { ref } from "vue";
 import axios from "axios";
 
 const baseUrl = "http://localhost:3306/api/";

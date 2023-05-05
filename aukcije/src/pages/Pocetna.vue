@@ -50,7 +50,6 @@
 </template>
 
 <script>
-import { ref } from "vue";
 import axios from "axios";
 
 const baseUrl = "http://localhost:3306/api/";
@@ -92,9 +91,6 @@ export default {
 };
 </script>
 <style>
-/*.q-carousel {
-     height: 300px;
-     max-width: 500px;*/
 .q-img {
   height: 300px;
   max-width: 500px;
