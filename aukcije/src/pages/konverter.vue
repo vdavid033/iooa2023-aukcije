@@ -8,15 +8,8 @@
       <div v-if="base64Image">
         <img :src="base64Image" />
         <q-separator></q-separator>
-        <q-btn
-          class="flex-flex-center"
-          label="Kopiraj u međuspremnik"
-          @click="copyToClipboard"
-        />
-        <div
-          class="q-pa-sm"
-          style="max-width: 700px; overflow-wrap: break-word"
-        >
+        <q-btn class="flex-flex-center" label="Kopiraj u međuspremnik" @click="copyToClipboard" />
+        <div class="q-pa-sm" style="max-width: 700px; overflow-wrap: break-word">
           data:image/jpg;base64,{{ base64Text }}
         </div>
       </div>
