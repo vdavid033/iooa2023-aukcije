@@ -19,16 +19,18 @@
     <div class="q-ml-sm flex flex-start q-gutter-sm">
       <div style="width: 500px">
         <q-input
+          ref="nazivPredmetaRef"
           filled
           type="text"
           label="Naziv proizvoda"
-          v-model="naziv"
+          v-model="naziv_predmeta"
           lazy-rules
           :rules="[(val) => (val !== null && val !== '') || 'Unesite naziv']"
         />
       </div>
       <div style="width: 500px">
         <q-select
+          ref="selectedCategory1Ref"
           filled
           type="int"
           lazy-rules
@@ -45,10 +47,11 @@
       </div>
       <div style="width: 500px">
         <q-input
+          ref="pocetnaCijenaRef"
           filled
           type="double"
           label="Početna cijena proizvoda"
-          v-model="cijena"
+          v-model="pocetna_cijena"
           lazy-rules
           :rules="[
             (val) => (val !== null && val !== '') || 'Unesite početnu cijenu',
@@ -57,6 +60,7 @@
       </div>
       <div style="width: 500px">
         <q-select
+          ref="selectedCategory2Ref"
           filled
           type="text"
           lazy-rules
@@ -66,13 +70,16 @@
           emit-value
           option-label="name"
           option-value="value"
-           :rules="[
-            (val) => (val !== null && val !== '') || 'Odaberite humanitarnu svrhu aukcije',
+          :rules="[
+            (val) =>
+              (val !== null && val !== '') ||
+              'Odaberite humanitarnu svrhu aukcije',
           ]"
         />
       </div>
       <div style="width: 500px">
         <q-select
+          ref="selectedCategory3Ref"
           filled
           type="integer"
           lazy-rules
@@ -89,7 +96,6 @@
       </div>
     </div>
     <div class="q-ml-sm flex flex-start q-gutter-sm">
-      <q-uploader style="max-width: 500px" label="Umetnite slike proizvoda" />
       <div style="width: 300px">
         <q-input filled v-model="date" label="Datum i vrijeme početka aukcije">
           <template v-slot:prepend>
@@ -167,16 +173,36 @@
     </div>
 
     <div style="width: 500px">
-        <q-input
-          filled
-          type="text"
-          label="Opis proizvoda"
-          v-model="opispredmeta"
-          lazy-rules
-          :rules="[(val) => (val !== null && val !== '') || 'Unesite opis']"
-        />
+      <q-input
+        ref="opisPredmetaRef"
+        filled
+        type="text"
+        label="Opis proizvoda"
+        v-model="opis_predmeta"
+        lazy-rules
+        :rules="[(val) => (val !== null && val !== '') || 'Unesite opis']"
+      />
+    </div>
+
+    <div>
+      <input type="file" @change="onFileChange" />
+
+      <q-btn @click="convertImage">Spremi sliku</q-btn>
+      <q-separator></q-separator>
+      <div v-if="base64Image">
+        <img :src="base64Image" />
+        <q-separator></q-separator>
+
+        <div
+          class="q-pa-sm"
+          style="max-width: 700px; overflow-wrap: break-word"
+        ></div>
       </div>
 
+      <div>
+        <q-separator></q-separator>
+      </div>
+    </div>
     <div class="q-ml-sm flex justify-center q-gutter-sm">
       <q-btn
         label="Postavi"
@@ -186,9 +212,26 @@
       />
       <q-btn label="Otkaži" type="submit" color="red" class="q-ml-sm" />
     </div>
+
+    <q-dialog v-model="showDialog">
+      <q-card>
+        <q-card-section> Predmet je uspješno dodan! </q-card-section>
+        <q-card-actions align="right">
+          <q-btn
+            flat
+            label="Close"
+            color="primary"
+            v-close-popup
+            @click="closeAndReload"
+          />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </q-card>
 </template>
 <script>
+import { QDialog } from "quasar";
+import imageCompression from "browser-image-compression";
 import { ref } from "vue";
 import axios from "axios"; // Import axios
 
@@ -209,6 +252,12 @@ export default {
       selectedCategory3: null,
       pocetna_cijena: "",
       slika: null,
+      file: null,
+      base64Image: null,
+      base64Text: null,
+      imageUrl: "",
+      showDialog: false,
+
       categories: [
         { name: "Namjestaj", value: "1" },
         { name: "Automobili", value: "2" },
@@ -225,20 +274,70 @@ export default {
         { name: "Masimo", value: "1" },
         { name: "Emil", value: "2" },
         { name: "Dorijan", value: "3" },
-        {name: "Dario", value: "4"},
+        { name: "Dario", value: "4" },
       ],
     };
   },
   methods: {
+    async onFileChange(e) {
+      this.file = e.target.files[0];
+      await this.convertImage();
+    },
+    async convertImage() {
+      if (!this.file && !this.imageUrl) {
+        return alert("Molimo odaberite sliku ili unesite URL slike.");
+      }
+
+      const options = {
+        maxSizeMB: 1, // Maximum file size in MB
+        maxWidthOrHeight: 1920, // Maximum width or height, whichever is smaller
+        useWebWorker: true,
+      };
+
+      try {
+        let compressedFile;
+
+        if (this.imageUrl) {
+          const response = await fetch(this.imageUrl);
+          const blob = await response.blob();
+          compressedFile = await imageCompression(blob, options);
+        } else {
+          compressedFile = await imageCompression(this.file, options);
+        }
+
+        const reader = new FileReader();
+        reader.readAsDataURL(compressedFile);
+        reader.onload = () => {
+          this.base64Image = reader.result;
+          this.base64Text = reader.result.replace(
+            /^data:image\/[a-z]+;base64,/,
+            ""
+          );
+          this.slika = "data:image/jpg;base64," + this.base64Text;
+        };
+        reader.onerror = (error) => {
+          console.error(error);
+        };
+      } catch (error) {
+        console.error(error);
+        return alert("Došlo je do pogreške prilikom kompresije slike.");
+      }
+    },
+
+    closeAndReload() {
+      this.showDialog = false;
+      window.location.reload();
+    },
+
     async submitForm() {
       const sampleData = {
         sifra_predmeta: this.sifra_predmeta,
-        naziv_predmeta: this.naziv,
-        opis_predmeta: this.opispredmeta,
-        slika: "slika.jpg",
+        naziv_predmeta: this.naziv_predmeta,
+        opis_predmeta: this.opis_predmeta,
+        slika: this.slika,
         vrijeme_pocetka: this.date,
         vrijeme_zavrsetka: this.date2,
-        pocetna_cijena: this.cijena,
+        pocetna_cijena: this.pocetna_cijena,
         svrha_donacije: this.selectedCategory2,
         id_korisnika: this.selectedCategory3,
         sifra_kategorije: this.selectedCategory1,
@@ -250,6 +349,7 @@ export default {
           sampleData
         );
         console.log(response.data);
+        this.showDialog = true;
       } catch (error) {
         console.error(error);
       }
