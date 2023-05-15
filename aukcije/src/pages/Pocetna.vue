@@ -11,12 +11,12 @@
       style="width: 400px"
     >
       <q-card @click = "navigateToItem1(item.sifra_kategorije)">
-        
+
         <q-item-section>
           <q-item class="q-pa-sm text-bold text-blue-7">{{
             item.naziv_kategorije
           }}</q-item>
-          
+
         </q-item-section>
       </q-card>
     </div>
@@ -51,7 +51,6 @@
 </template>
 
 <script>
-import { ref } from "vue";
 import axios from "axios";
 
 const baseUrl = "http://localhost:3000/api/";
@@ -59,7 +58,7 @@ const baseUrl = "http://localhost:3000/api/";
 export default {
   setup() {
     return {
-     
+
     };
   },
   data() {
