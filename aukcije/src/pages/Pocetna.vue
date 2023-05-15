@@ -42,7 +42,7 @@
           <q-item>Početna cijena: {{ item.pocetna_cijena }}$</q-item>
           <q-item>Vrijeme zavrsetka: {{ formattedDate(item.vrijeme_zavrsetka) }}</q-item>
           <q-item
-            >Preostalo vrijeme aukcije: {{ item.preostalo_vrijeme }}</q-item
+            >Preostalo vrijeme aukcije: {{ item.preostalo_vrijeme }} h</q-item
           >
         </q-item-section>
       </q-card>
