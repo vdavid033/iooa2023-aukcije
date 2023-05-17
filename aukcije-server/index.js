@@ -180,7 +180,7 @@ app.get('/api/all-korisnik', (req, res) => {
 
 app.get('/api/all-predmet', (req, res) => {
 
-    connection.query('SELECT * FROM `predmet` ORDER BY vrijeme_zavrsetka DESC', (error, results) => {
+    connection.query('SELECT * FROM predmet ORDER BY vrijeme_zavrsetka DESC', (error, results) => {
         if (error) throw error;
 
         res.send(results)
@@ -200,8 +200,16 @@ app.get('/api/all-predmet', (req, res) => {
     })
 })
 
+app.get("/api/all-predmet-with-current-price", (req, res) => {
+  connection.query(
+    "SELECT p.sifra_predmeta, p.naziv_predmeta, p.slika, p.pocetna_cijena, p.vrijeme_zavrsetka, TIME_FORMAT( SEC_TO_TIME(TIMESTAMPDIFF(SECOND, p.vrijeme_pocetka, p.vrijeme_zavrsetka)), '%H:%i:%s' ) AS preostalo_vrijeme, COALESCE(MAX(po.vrijednost_ponude), p.pocetna_cijena) AS trenutna_cijena FROM predmet p LEFT JOIN ponuda po ON p.sifra_predmeta = po.sifra_predmeta GROUP BY p.sifra_predmeta ORDER BY preostalo_vrijeme DESC",
+    (error, results) => {
+      if (error) throw error;
 
-
+      res.send(results);
+    }
+  );
+});
 app.listen(port, () => {
-  console.log(`Server running at port: ${port}`);
+  console.log('Server running at port:  ${port}');
 });
