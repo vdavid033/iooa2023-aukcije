@@ -88,14 +88,14 @@
         </div>
         <div style="width: 400px">
           <q-field rounded filled label="Trenutna cijena " stack-label>
-            <template v-slot:control>
-              <div class="self-center full-width no-outline" tabindex="0">
-                <div v-if="potvrdjenaCijena">
-                  <p>{{ potvrdjenaCijena.label }}</p>
-                </div>
-              </div>
-            </template>
-          </q-field>
+            
+  
+    <div class="self-center full-width no-outline" tabindex="0">
+      {{ item.trenutna_cijena + "$" }}
+    </div>
+  
+</q-field>
+         
         </div>
       </div>
     </div>
@@ -151,6 +151,7 @@ export default {
         { label: "1000 €" },
       ],
       potvrdjenaCijena: null,
+      
     };
   },
   mounted() {
@@ -159,6 +160,14 @@ export default {
       .then((response) => {
         this.item = response.data[0];
       });
+
+      axios
+    .get(baseUrl + "get-predmet-trenutna-cijena/" + this.sifra_predmeta, {})
+    .then((response) => {
+      this.item = response.data[0];
+     
+    });
+     
   },
 
   methods: {

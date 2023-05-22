@@ -210,6 +210,19 @@ app.get("/api/all-predmet-with-current-price", (req, res) => {
     }
   );
 });
+app.get('/api/get-predmet-trenutna-cijena/:id', (req, res) => {
+  const { id } = req.params;
+  connection.query(
+    "SELECT p.sifra_predmeta, p.naziv_predmeta, p.opis_predmeta, p.svrha_donacije, p.slika, p.pocetna_cijena, p.vrijeme_pocetka, p.vrijeme_zavrsetka, TIME_FORMAT(SEC_TO_TIME(TIMESTAMPDIFF(SECOND, p.vrijeme_pocetka, p.vrijeme_zavrsetka)), '%H:%i:%s') AS preostalo_vrijeme, COALESCE(po.trenutna_cijena, p.pocetna_cijena) AS trenutna_cijena FROM predmet p LEFT JOIN (SELECT sifra_predmeta, MAX(vrijednost_ponude) AS trenutna_cijena FROM ponuda GROUP BY sifra_predmeta) po ON p.sifra_predmeta = po.sifra_predmeta WHERE p.sifra_predmeta = ?",
+    [id],
+    (error, results) => {
+      if (error) throw error;
+
+      res.send(results);
+    }
+  );
+});
+
 app.listen(port, () => {
   console.log('Server running at port:  ${port}');
 });
