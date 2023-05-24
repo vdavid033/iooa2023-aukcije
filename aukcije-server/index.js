@@ -66,7 +66,15 @@ app.post('/unosPredmeta', function (request, response) {
     });
 });
 
+app.put('/api/update-price/:id', (req, res) => {
+  const { id } = req.params;
+  const { newPrice } = req.body;
 
+  connection.query('UPDATE predmet SET pocetna_cijena = ? WHERE sifra_predmeta = ?', [newPrice, id], (error, results) => {
+    if (error) throw error;
+    res.send({ message: 'Price updated successfully.' });
+  });
+});
 
   app.post('/unostrenutnaponuda', function (request, response) {
     const data = request.body;
