@@ -98,15 +98,6 @@ app.get('/api/all-korisnik', (req, res) => {
     })
 })
 
-app.get('/api/all-predmet', (req, res) => {
-
-    connection.query('SELECT sifra_predmeta, naziv_predmeta, slika, pocetna_cijena, vrijeme_zavrsetka, TIME_FORMAT( SEC_TO_TIME(TIMESTAMPDIFF(SECOND, NOW(), vrijeme_zavrsetka)), \'%H:%i:%s\' ) AS preostalo_vrijeme FROM predmet WHERE vrijeme_zavrsetka > NOW() ORDER BY preostalo_vrijeme DESC', (error, results) => {
-        if (error) throw error;
-
-        res.send(results)
-    })
-})
-
 app.get('/api/get-predmet/:id', (req, res) => {
     const { id } = req.params;
 
@@ -178,31 +169,9 @@ app.get('/api/all-korisnik', (req, res) => {
     })
 })
 
-app.get('/api/all-predmet', (req, res) => {
-
-    connection.query('SELECT * FROM predmet ORDER BY vrijeme_zavrsetka DESC', (error, results) => {
-        if (error) throw error;
-
-        res.send(results)
-    })
-})
-
-app.get('/api/all-predmet', (req, res) => {
-
-    dbConn.query('SELECT * FROM predmet', (error, results) => {
-        if (error) {
-            console.error(error)
-            res.status(500).send('Error retrieving data from database')
-        } else {
-            console.log(res.json(results))
-            res.json(results)
-        }
-    })
-})
-
 app.get("/api/all-predmet-with-current-price", (req, res) => {
   connection.query(
-    "SELECT p.sifra_predmeta, p.naziv_predmeta, p.slika, p.pocetna_cijena, p.vrijeme_zavrsetka, TIME_FORMAT( SEC_TO_TIME(TIMESTAMPDIFF(SECOND, p.vrijeme_pocetka, p.vrijeme_zavrsetka)), '%H:%i:%s' ) AS preostalo_vrijeme, COALESCE(MAX(po.vrijednost_ponude), p.pocetna_cijena) AS trenutna_cijena FROM predmet p LEFT JOIN ponuda po ON p.sifra_predmeta = po.sifra_predmeta GROUP BY p.sifra_predmeta ORDER BY preostalo_vrijeme DESC",
+    "SELECT p.sifra_predmeta, p.naziv_predmeta, p.slika, p.pocetna_cijena, p.vrijeme_zavrsetka, TIME_FORMAT( SEC_TO_TIME(TIMESTAMPDIFF(SECOND, NOW(), p.vrijeme_zavrsetka)), '%H:%i:%s' ) AS preostalo_vrijeme, COALESCE(MAX(po.vrijednost_ponude), p.pocetna_cijena) AS trenutna_cijena FROM predmet p LEFT JOIN ponuda po ON p.sifra_predmeta = po.sifra_predmeta WHERE p.vrijeme_zavrsetka > NOW() GROUP BY p.sifra_predmeta ORDER BY preostalo_vrijeme DESC",
     (error, results) => {
       if (error) throw error;
 
@@ -213,7 +182,7 @@ app.get("/api/all-predmet-with-current-price", (req, res) => {
 app.get('/api/get-predmet-trenutna-cijena/:id', (req, res) => {
   const { id } = req.params;
   connection.query(
-    "SELECT p.sifra_predmeta, p.naziv_predmeta, p.opis_predmeta, p.svrha_donacije, p.slika, p.pocetna_cijena, p.vrijeme_pocetka, p.vrijeme_zavrsetka, TIME_FORMAT(SEC_TO_TIME(TIMESTAMPDIFF(SECOND, p.vrijeme_pocetka, p.vrijeme_zavrsetka)), '%H:%i:%s') AS preostalo_vrijeme, COALESCE(po.trenutna_cijena, p.pocetna_cijena) AS trenutna_cijena FROM predmet p LEFT JOIN (SELECT sifra_predmeta, MAX(vrijednost_ponude) AS trenutna_cijena FROM ponuda GROUP BY sifra_predmeta) po ON p.sifra_predmeta = po.sifra_predmeta WHERE p.sifra_predmeta = ?",
+    "SELECT p.sifra_predmeta, p.naziv_predmeta, p.opis_predmeta, p.svrha_donacije, p.slika, p.pocetna_cijena, p.vrijeme_pocetka, p.vrijeme_zavrsetka, TIME_FORMAT(SEC_TO_TIME(TIMESTAMPDIFF(SECOND, NOW(), p.vrijeme_zavrsetka)), '%H:%i:%s') AS preostalo_vrijeme, COALESCE(po.trenutna_cijena, p.pocetna_cijena) AS trenutna_cijena FROM predmet p LEFT JOIN (SELECT sifra_predmeta, MAX(vrijednost_ponude) AS trenutna_cijena FROM ponuda GROUP BY sifra_predmeta) po ON p.sifra_predmeta = po.sifra_predmeta WHERE p.sifra_predmeta = ?",
     [id],
     (error, results) => {
       if (error) throw error;
@@ -224,5 +193,5 @@ app.get('/api/get-predmet-trenutna-cijena/:id', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log('Server running at port:  ${port}');
+  console.log('Server running at port: ' + port);
 });
