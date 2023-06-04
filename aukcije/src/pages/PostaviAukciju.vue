@@ -230,10 +230,8 @@
   </q-card>
 </template>
 <script>
-import { QDialog } from "quasar";
 import imageCompression from "browser-image-compression";
-import { ref } from "vue";
-import axios from "axios"; // Import axios
+import axios from "axios";
 
 export default {
   data() {
@@ -331,8 +329,8 @@ export default {
         naziv_predmeta: this.naziv_predmeta,
         opis_predmeta: this.opis_predmeta,
         slika: this.slika,
-        vrijeme_pocetka: this.date,
-        vrijeme_zavrsetka: this.date2,
+        vrijeme_pocetka: this.vrijemePocetka,
+        vrijeme_zavrsetka: this.vrijemeZavrsetka,
         pocetna_cijena: this.pocetna_cijena,
         svrha_donacije: this.selectedCategory2,
         id_korisnika: this.selectedCategory3,
@@ -353,6 +351,7 @@ export default {
   },
   mounted() {
     const now = new Date();
+    now.setHours(now.getHours() + 2);
     this.vrijemePocetka = now.toISOString().slice(0, 16);
     this.vrijemeZavrsetka = this.vrijemePocetka;
   },
