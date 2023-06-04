@@ -35,18 +35,17 @@ app.get("/api/all-korisnik", (req, res) => {
     res.send(results);
   });
 });
+
 app.post('/unosPredmeta', function (request, response) {
     const data = request.body;
     predmet = [[data.sifra_predmeta, data.naziv_predmeta,  data.opis_predmeta, data.slika, data.vrijeme_pocetka, data.vrijeme_zavrsetka, data.pocetna_cijena, data.svrha_donacije, data.id_korisnika, data.sifra_kategorije]]
     connection.query('INSERT INTO predmet (sifra_predmeta, naziv_predmeta,  opis_predmeta, slika, vrijeme_pocetka, vrijeme_zavrsetka, pocetna_cijena, svrha_donacije, id_korisnika, sifra_kategorije) VALUES ?',
     [predmet], function (error, results, fields) {
       if (error) throw error;
+      console.log('data', data)
       return response.send({ error: false, data: results, message: 'Predmet je dodan.' });
     });
 });
-
-
-
 
 app.get("/api/all-predmet", (req, res) => {
   connection.query(
@@ -106,16 +105,6 @@ app.get('/api/get-predmet/:id', (req, res) => {
         res.send(results)
     });
 });
-
-app.post('/unosPredmeta', function (request, response) {
-    const data = request.body;
-    predmet = [[data.sifra_predmeta, data.naziv_predmeta,  data.opis_predmeta, data.slika, data.vrijeme_pocetka, data.vrijeme_zavrsetka, data.pocetna_cijena, data.svrha_donacije, data.id_korisnika, data.sifra_kategorije]]
-    connection.query('INSERT INTO predmet (sifra_predmeta, naziv_predmeta,  opis_predmeta, slika, vrijeme_pocetka, vrijeme_zavrsetka, pocetna_cijena, svrha_donacije, id_korisnika, sifra_kategorije) VALUES ?',
-    [predmet], function (error, results, fields) {
-      if (error) throw error;
-      return response.send({ error: false, data: results, message: 'Predmet je dodan.' });
-    });
-  });
 
   app.get('/api/get-ponuda/:id', (req, res) => {
     const { id } = req.params;
