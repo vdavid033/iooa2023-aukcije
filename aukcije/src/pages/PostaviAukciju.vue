@@ -97,7 +97,7 @@
     </div>
     <div class="q-ml-sm flex flex-start q-gutter-sm">
       <div style="width: 300px">
-        <q-input filled v-model="date" label="Datum i vrijeme početka aukcije">
+        <q-input filled v-model="vrijemePocetka" label="Datum i vrijeme početka aukcije">
           <template v-slot:prepend>
             <q-icon name="event" class="cursor-pointer">
               <q-popup-proxy
@@ -105,7 +105,7 @@
                 transition-show="scale"
                 transition-hide="scale"
               >
-                <q-date v-model="date" mask="YYYY-MM-DD HH:mm">
+                <q-date v-model="date" mask="YYYY-MM-DD HH:mm" ref="datePicker">
                   <div class="row items-center justify-end">
                     <q-btn v-close-popup label="Close" color="primary" flat />
                   </div>
@@ -134,7 +134,7 @@
       <div style="width: 300px">
         <q-input
           filled
-          v-model="date2"
+          v-model="vrijemeZavrsetka"
           label="Datum i vrijeme završetka aukcije"
         >
           <template v-slot:prepend>
@@ -144,7 +144,7 @@
                 transition-show="scale"
                 transition-hide="scale"
               >
-                <q-date v-model="date2" mask="YYYY-MM-DD HH:mm">
+                <q-date v-model="date2" mask="YYYY-MM-DD HH:mm" ref="datePicker">
                   <div class="row items-center justify-end">
                     <q-btn v-close-popup label="Close" color="primary" flat />
                   </div>
@@ -230,18 +230,10 @@
   </q-card>
 </template>
 <script>
-import { QDialog } from "quasar";
 import imageCompression from "browser-image-compression";
-import { ref } from "vue";
-import axios from "axios"; // Import axios
+import axios from "axios";
 
 export default {
-  setup() {
-    return {
-      date: ref("2023-03-27 12:44"),
-      date2: ref("2023-03-27 12:44"),
-    };
-  },
   data() {
     return {
       sifra_predmeta: null,
@@ -257,6 +249,8 @@ export default {
       base64Text: null,
       imageUrl: "",
       showDialog: false,
+      vrijemePocetka: null,
+      vrijemeZavrsetka: null,
 
       categories: [
         { name: "Namjestaj", value: "1" },
@@ -289,8 +283,8 @@ export default {
       }
 
       const options = {
-        maxSizeMB: 1, // Maximum file size in MB
-        maxWidthOrHeight: 1920, // Maximum width or height, whichever is smaller
+        maxSizeMB: 1,
+        maxWidthOrHeight: 1920,
         useWebWorker: true,
       };
 
@@ -335,8 +329,8 @@ export default {
         naziv_predmeta: this.naziv_predmeta,
         opis_predmeta: this.opis_predmeta,
         slika: this.slika,
-        vrijeme_pocetka: this.date,
-        vrijeme_zavrsetka: this.date2,
+        vrijeme_pocetka: this.vrijemePocetka,
+        vrijeme_zavrsetka: this.vrijemeZavrsetka,
         pocetna_cijena: this.pocetna_cijena,
         svrha_donacije: this.selectedCategory2,
         id_korisnika: this.selectedCategory3,
@@ -354,6 +348,12 @@ export default {
         console.error(error);
       }
     },
+  },
+  mounted() {
+    const now = new Date();
+    now.setHours(now.getHours() + 2);
+    this.vrijemePocetka = now.toISOString().slice(0, 16);
+    this.vrijemeZavrsetka = this.vrijemePocetka;
   },
 };
 </script>

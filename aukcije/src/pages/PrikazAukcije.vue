@@ -141,6 +141,7 @@ export default {
   },
   data() {
     return {
+      
       item: {},
       showDialog: false,
       odabranaCijena: null,
@@ -153,8 +154,17 @@ export default {
         { label: "1000 €" },
       ],
       potvrdjenaCijena: null,
+      predmet: {
+        id_ponude:null,
+        vrijednost_ponude: null, 
+        vrijeme_ponude: null,
+        id_korisnika: null,
+        sifra_predmeta: null, 
+        
+      },
     };
   },
+  
   mounted() {
     axios.get(baseUrl + "get-predmet/" + this.sifra_predmeta)
       .then((response) => {
@@ -171,13 +181,33 @@ export default {
       if (this.odabranaCijena) {
         // Increase the current price based on the selected value
         const selectedPrice = parseInt(this.odabranaCijena.label);
-        const currentPrice = parseInt(this.item.pocetna_cijena);
-        this.potvrdjenaCijena = (currentPrice + selectedPrice);
+        const currentPrice = parseInt(this.potvrdjenaCijena);
+        const newPrice = currentPrice + selectedPrice;
+
+        // Update the displayed price
+        this.potvrdjenaCijena = newPrice;
+
+        const podaciPonude = {
+          sifra_predmeta: this.sifra_predmeta,
+          vrijednost_ponude: this.potvrdjenaCijena,
+        };
+        
+
+        axios.post('http://localhost:3000/unostrenutnaponuda', podaciPonude)
+      .then(response => {
+        console.log('New price stored successfully:', response.data);
+        // Handle the response data
+      })
+      .catch(error => {
+        console.error('Error storing new price:', error);
+        // Handle the error
+      });
+
+        // Close the dialog
         this.showDialog = false;
       }
     }, 
-
-     
+    
   },
 };
 </script>
