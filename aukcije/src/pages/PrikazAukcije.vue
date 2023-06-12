@@ -186,13 +186,19 @@ export default {
 
         // Update the displayed price
         this.potvrdjenaCijena = newPrice;
+        
+        const currentDate = new Date();
+        const formattedTime = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()} ${currentDate.getHours()}:${currentDate.getMinutes()}:${currentDate.getSeconds()}`;
 
         const podaciPonude = {
           sifra_predmeta: this.sifra_predmeta,
           vrijednost_ponude: this.potvrdjenaCijena,
+          id_ponude: this.id_ponude,
+          vrijeme_ponude: formattedTime,
+          id_korisnika: 4,
         };
-        
 
+        
         axios.post('http://localhost:3000/unostrenutnaponuda', podaciPonude)
       .then(response => {
         console.log('New price stored successfully:', response.data);

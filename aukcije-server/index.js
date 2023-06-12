@@ -125,7 +125,7 @@ app.get('/api/get-ponuda/:id', (req, res) => {
 app.post('/unostrenutnaponuda', function (request, response) {
   console.log('radi unos trenutna ponuda');
   const data = request.body;
-  const ponuda = [[data.id_ponude, data.vrijednost_ponude, '2023-06-07 17:51:20', 1, data.sifra_predmeta]];
+  const ponuda = [[data.id_ponude, data.vrijednost_ponude, data.vrijeme_ponude, data.id_korisnika, data.sifra_predmeta]];
   connection.query('INSERT INTO ponuda (id_ponude, vrijednost_ponude, vrijeme_ponude, id_korisnika, sifra_predmeta) VALUES ?',
     [ponuda], function (error, results, fields) {
       if (error) throw error;
