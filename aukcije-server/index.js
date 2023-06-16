@@ -117,15 +117,16 @@ app.get('/api/get-predmet/:id', (req, res) => {
 
 
 
-  app.post('/unostrenutnaponuda', function (request, response) {
-    const data = request.body;
-    predmet = [[  data.id_ponude, data.vrijednost_ponude, data.vrijeme_ponude, data.id_korisnika, data.sifra_predmeta]]
-    connection.query('INSERT INTO ponuda (id_ponude, vrijednost_ponude,  vrijeme_ponude, id_korisnika, sifra_predmeta) VALUES ?',
-    [predmet], function (error, results, fields) {
+app.post('/unostrenutnaponuda', function (request, response) {
+  console.log('radi unos trenutna ponuda');
+  const data = request.body;
+  const ponuda = [[data.id_ponude, data.vrijednost_ponude, data.vrijeme_ponude, data.id_korisnika, data.sifra_predmeta]];
+  connection.query('INSERT INTO ponuda (id_ponude, vrijednost_ponude, vrijeme_ponude, id_korisnika, sifra_predmeta) VALUES ?',
+    [ponuda], function (error, results, fields) {
       if (error) throw error;
-      return response.send({ error: false, data: results, message: 'Dodali se trenutnu ponudu.' });
+      return response.send({ error: false, data: results, message: 'Dodana je trenutna ponuda.' });
     });
-  });
+});
 app.post("/api/unos-slike", function (req, res) {
   const data = req.body;
   const slika = data.slika;
